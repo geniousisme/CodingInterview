@@ -1,0 +1,6 @@
+*.pyc 
+*~
+*.swp
+*.gsheet
+C++/bin/*
+C++/out/*
