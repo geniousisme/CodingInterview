@@ -37,6 +37,32 @@ class Solution1(object):
                   comb.pop() # version 2: recover the value of comb now, backtracking
 
 # P.S. version 1 & 2 速度差不多，推測是因為 version 2 雖然用了 append ，但在結束之後還是得用上 pop 來恢復
+class Solution(object):
+    def __init__(self):
+        self.res = []
+        self.target = 0
+        self.length = 0
+
+    def combinationSum(self, candidates, target):
+        self.res = []
+        if candidates:
+            self.target = target
+            self.length = len(candidates)
+            # notice! must be sorted, otherwise hard to see the replicate
+            candidates.sort()
+            self.comb_sum_helper(candidates, [], 0, 0)
+        return self.res
+
+    def comb_sum_helper(self, candidates, comb, curr_sum, start):
+        if curr_sum == self.target:
+            self.res.append(comb)
+            return
+        for i in xrange(start, self.length):
+            if self.target - curr_sum < candidates[i]:
+            # this condition must exist, we use it to
+            # escape the infinite looping condition
+                break
+            self.comb_sum_helper(candidates, comb + [candidates[i]], curr_sum + candidates[i], i)
 
 if __name__ == '__main__':
    s = Solution()

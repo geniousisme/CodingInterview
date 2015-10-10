@@ -29,7 +29,6 @@ if __name__ == '__main__':
     nums = [5,0,9,3,2,1,19,100]
     print mergeSort(nums)
     print sorted(nums)
-  
 
 
 

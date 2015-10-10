@@ -9,7 +9,6 @@ class Solution:
             else:
                 digits[i] = digits[i] + flag
                 flag = 0
-        
         if flag == 1:
             digits.insert(0, 1)
         return digits

@@ -11,7 +11,7 @@ class Solution:
     def __init__(self):
         self.queue = []
         self.lv_order = []
-    
+
     def levelOrder(self, root):
         self.queue.append(root)
         self.BFS(root)
@@ -31,17 +31,17 @@ class Solution:
                  self.queue.extend(next_lv)
                  curr_lv = []
                  next_lv = []
-    
+
     # my original thought is not that good, use too much space
     # personally think the dfs with recursive implementation is better.
-    
+
     def preorder(self, root, level, res): # DFS
         if root:
             if len(res) < level+1: res.append([])
             res[level].append(root.val)
             self.preorder(root.left, level+1, res)
             self.preorder(root.right, level+1, res)
-    
+
     def dfsLevelOrder(self, root):
         res=[]
         self.preorder(root, 0, res)
