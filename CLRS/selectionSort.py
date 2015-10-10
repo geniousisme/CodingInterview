@@ -1,21 +1,27 @@
+'''
+bc: O(n^2)
+ac: O(n^2)
+wc: O(n^2)
+'''
+
 class SelectionSort(object):
     def selection_sort(self, nums):
         length = len(nums)
-        last = length - 1
-        curr_max = -999
-        max_idx  = 0
-        for end in xrange(length, -1, -1):
-            for i in xrange(end):
-                if nums[i] > curr_max:
-                    curr_max = nums[i]
+        for end in xrange(length - 1, 0, -1):
+            max_idx  = 0
+            for i in xrange(1, end + 1):
+                if nums[i] > nums[max_idx]:
                     max_idx  = i
             self.swap(nums, max_idx, end)
         return nums
 
+    def swap1(self, nums, idx1, idx2):
+        nums[idx1], nums[idx2] = nums[idx2], nums[idx1]
+
     def swap(self, nums, idx1, idx2):
-        nums[idx1] ^= nums[idx2]
-        nums[idx2] ^= nums[idx1]
-        nums[idx1] ^= nums[idx2]
+        nums[idx1] = nums[idx1] ^ nums[idx2]
+        nums[idx2] = nums[idx1] ^ nums[idx2]
+        nums[idx1] = nums[idx2] ^ nums[idx1]
 
 if __name__ == "__main__":
     ss = SelectionSort()

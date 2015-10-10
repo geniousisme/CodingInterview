@@ -9,7 +9,7 @@ def quicksortInPlace(nums, start, end): # in-place version
     while left <= right:
         while nums[left] < pivot:
             left += 1
-        while nums[right] > pivot:        
+        while nums[right] > pivot:
             right -= 1
         if left <= right:
             swap(nums, left, right)
@@ -36,7 +36,7 @@ def quicksort(nums): # additional space
         else:
            pivotList.append(n)
     return quicksort(left) + pivotList + quicksort(right)
-    
+
 if __name__ == '__main__':
    nums = [2, 4, 7, 8, 1, 3, 10, 9, 6, 5]
    # quicksort(nums, 0, len(nums) - 1)
