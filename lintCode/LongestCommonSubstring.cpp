@@ -1,7 +1,7 @@
 #include "../include/common.h"
 
 class Solution {
-public:    
+public:
     /**
      * @param A, B: Two string.
      * @return: the length of the longest common substring.
