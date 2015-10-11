@@ -1,4 +1,4 @@
-class Solution:
+class Solution1:
     # @param {integer} n
     # @return {string[][]}
     # Chris::TODO: write the iterative version tomorrow
@@ -8,7 +8,7 @@ class Solution:
         self.count = 0
         self.dfs(0)
         return self.count
-    
+
     def dfs(self, col_num):
         if col_num == self.n:
            self.count += 1
@@ -17,13 +17,13 @@ class Solution:
             if self.queen_judge(col_num, i):
                self.board[col_num] = i
                self.dfs(col_num + 1)
-    
+
     def queen_judge(self, col, row):
         for k in xrange(col):
             if self.board[k] == row or abs(col - k) == abs(row - self.board[k]):
                return False
         return True
-    
+
     def iterativeNQueens(self):
         col = row = count = 0
 
@@ -36,13 +36,10 @@ class Solution:
               col += 1
 
 
+
 if __name__ == '__main__':
    s = Solution()
    print s.totalNQueens(4)
-   # for queen in queens:
-   #     s.print_matrix(queen)
-   #     print '#################'
-
 
 
 

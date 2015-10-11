@@ -11,7 +11,7 @@ public:
              currMin = *min_element(arr, arr + 3);
              currMax = *max_element(arr, arr + 3);
              Max     = max(Max, currMax);
-        };    
+        };
         return Max;
     }
 };
