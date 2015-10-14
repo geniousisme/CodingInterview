@@ -9,7 +9,8 @@ class Solution(object):
         if p is None and q is None:
             return True
         if p and q and p.val == q.val:
-            return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
+            return self.isSameTree(p.left, q.left) and                         \
+                   self.isSameTree(p.right, q.right)
         return False
 
     def isSameTree(self, p, q): # iterative
