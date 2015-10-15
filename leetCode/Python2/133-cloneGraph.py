@@ -9,7 +9,7 @@ class Solution(object):
             return node
         return self.bfs(node, {})
 
-    def dfs(self, node, table):
+    def dfs(self, node, table): # dfs
         if table.get(node) is not None:
             return table[node]
         new_node = UndirectedGraphNode(node.label)
@@ -18,7 +18,7 @@ class Solution(object):
             new_node.neighbors.append(self.dfs(neighbor, table))
         return new_node # notice, remember to return things back!
 
-    def bfs(self, node, table):
+    def bfs(self, node, table): # bfs
         queue = [node]
         new_node = UndirectedGraphNode(node.label)
         table[node] = new_node

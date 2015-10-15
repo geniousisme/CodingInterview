@@ -16,7 +16,7 @@ class Solution:
               numerator = 10 * (numerator % denominator)
               # print numerator
               end += 1
-              if numerator == 0: 
+              if numerator == 0:
                  break
               start = num_pos_dict.get(numerator)
               if start is not None:
@@ -38,5 +38,3 @@ if __name__ == '__main__':
    s = Solution()
    print s.fractionToDecimal(2, 3)
    print s.fractionToDecimal(2, 5)
-                 
-        
