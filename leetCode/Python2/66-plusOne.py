@@ -15,4 +15,22 @@ class Solution(object):
         return digits
 
     def minusOne(self, digits):
-        pass
+        digits[0] *= -1
+        neg_carry = -1
+        length = len(digits)
+        for i in xrange(length - 1, -1, -1):
+            if digits[i] + neg_carry < 0:
+                digits[i] = 9
+                neg_carry = -1
+            else:
+                digits[i] += neg_carry
+                neg_carry = 0
+        if digits[0] == 0:
+            del digits[0]
+        digits[0] *= -1
+        return digits
+
+if __name__ == "__main__":
+    s = Solution()
+    print s.minusOne([-1, 0, 0, 0])
+    print s.minusOne([-1, 9, 2, 8])
