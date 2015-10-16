@@ -13,7 +13,7 @@ class Solution:
                     if three_sum not in three_sum_comb:
                        three_sum_comb.append(three_sum)
         return three_sum_comb
-    
+
     def twoSum(self, num_list, summation):
         num_idx_dict = {}; sum_combination = []; processed_dict = {}
         for idx, num in enumerate(num_list):
@@ -32,11 +32,7 @@ class Solution:
     def threeSum(self, num_list):
         num_list = sorted(num_list)
         left = 0; right = len(num_list) - 1
-        
 
-
-
-    
 if __name__ == "__main__":
     import time
     start = time.clock()
@@ -50,4 +46,3 @@ if __name__ == "__main__":
     num = [-4,-2,1,-5,-4,-4,4,-2,0,4,0,-2,3,1,-5,0]
     print s.threeSum(num)
     print "%s sec" % (time.clock() - start)
- 
