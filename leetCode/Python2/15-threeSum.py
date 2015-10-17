@@ -5,7 +5,7 @@ space: O(1)
 2. start from zero, and search for other nums with two ptr method which sum up as zero.
 3. avoid repated
 '''
-
+# notice: this one has many detail, need to practice more!
 class Solution(object):
     def threeSum(self, nums):
         """
@@ -15,11 +15,12 @@ class Solution(object):
         nums.sort() # sort the nums first
         res = []
         length = len(nums)
+        # notice here is length - 2,
+        # since we will get two more(aka start, end) from the left.
         for i in xrange(length - 2):
             # avoid repeat
             if i == 0 or nums[i] > nums[i - 1]:
-                start = i + 1; end = length - 1
-                # two Sum for -nums[i]
+                start = i + 1; end = length - 1 # two Sum for -nums[i]
                 while start < end:
                     if nums[start] + nums[end] == -nums[i]:
                         res.append([nums[i], nums[start], nums[end]])
@@ -31,17 +32,9 @@ class Solution(object):
                         while start < end and nums[start] == nums[start - 1]:
                             start += 1
                     elif nums[start] + nums[end] > -nums[i]:
-                        # avoid repeat
-                        while start < end:
-                            end -= 1
-                            if nums[end] < nums[end + 1]:
-                                break
+                        end -= 1
                     else:
-                        # avoid repeat
-                        while start < end:
-                            start += 1
-                            if nums[start] > nums[start - 1]:
-                                break
+                        start += 1
         return res
 
 if __name__ == "__main__":
