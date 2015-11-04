@@ -5,6 +5,7 @@ class Solution:
     """
     def maxTwoSubArrays(self, nums):
         # reference: http://hehejun.blogspot.com/2015/01/lintcodemaximum-subarray-ii.html
+        print nums
         length = len(nums)
         curr_max = -9999
         # notice, here we store global maximum
@@ -23,12 +24,13 @@ class Solution:
             if curr_max < 0:
                 curr_max = 0
             curr_max += nums[i]
-            if curr_max + left[i] > final_max:
-                final_max = curr_max + left[i]
+            # if curr_max + left[i] > final_max:
+            #     final_max = curr_max + left[i]
+            final_max = max(curr_max + left[i], final_max)
         return final_max
 
 if __name__ == "__main__":
     s = Solution()
     print s.maxTwoSubArrays([1, 3, -1, 2, -1, 2])
-    print s.maxTwoSubArrays([1, -99, -1, 2])
-    print s.maxTwoSubArrays([1, 2, 3, 4])
+    # print s.maxTwoSubArrays([1, -99, -1, 2])
+    # print s.maxTwoSubArrays([1, 2, 3, 4])
