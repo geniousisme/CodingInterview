@@ -1,61 +1,58 @@
-class TrieNode(object):
+class ListNode(object):
+    def __init__(self, key, val):
+        self.val = val
+        self.key = key
+        self.next = None
+        self.prev = None
+
+class LinkedList(object):
     def __init__(self):
-        """
-        Initialize your data structure here.
-        """
-        self.is_string = False
-        self.leaves    = {}
+        self.head = None
+        self.tail = None
 
-class Trie(object):
+    def insert(self, node):
+        if self.head is None:
+            self.head = node
+        else:
+            self.tail.next = node
+            node.prev = self.tail
+        self.tail = node
 
-    def __init__(self):
-        self.root = TrieNode()
+    def delete(self, node):
+        if node.prev:
+            node.prev.next = node.next
+        else:
+            self.head = node.next
+        if node.next:
+            node.next.prev = node.prev
+        else:
+            self.tail = node.prev
+        del node
 
-    def insert(self, word):
-        """
-        Inserts a word into the trie.
-        :type word: str
-        :rtype: void
-        """
-        curr = self.root
-        for char in word:
-            if not char in curr.leaves:
-                curr.leaves[char] = TrieNode()
-            curr = curr.leaves[char]
-        curr.is_string = True
+class LRUcache(object):
+    def __init__(self, capacity):
+        self.list = LinkedList()
+        self.dict = {}
+        self.capacity = capacity
 
-    def search(self, word):
-        """
-        Returns if the word is in the trie.
-        :type word: str
-        :rtype: bool
-        """
-        node = self.childSearch(word)
-        if node:
-            return node.is_string
-        return False
+    def _insert(self, key, val):
+        node = ListNode(key, val)
+        self.list.insert(node)
+        self.dict[key] = node
 
-    def childSearch(self, word):
-        curr = self.root
-        for char in word:
-            if char in curr.leaves:
-                curr = curr.leaves[char]
-            else:
-                return None
-        return curr
+    def get(self, key):
+        if key in self.dict:
+            val = self.dict[key].val
+            self.list.delete(self.dict[key])
+            self._insert(key, val)
+            return val
+        return -1
 
+    def set(self, key, val):
+        if key in self.dict:
+            self.list.delete(self.dict[key])
+        elif len(self.dict) == self.capacity:
+            del self.dict[self.list.head.key]
+            self.list.delete(self.list.head)
+        self._insert(key, val)
 
-    def startsWith(self, prefix):
-        """
-        Returns if there is any word in the trie
-        that starts with the given prefix.
-        :type prefix: str
-        :rtype: bool
-        """
-        return self.childSearch(prefix) is not None
-
-
-# Your Trie object will be instantiated and called as such:
-# trie = Trie()
-# trie.insert("somestring")
-# trie.search("key")
