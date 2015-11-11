@@ -1,4 +1,4 @@
-class Solution:
+class Solution1:
     # @param {integer} numerator
     # @param {integer} denominator
     # @return {string}
@@ -33,6 +33,39 @@ class Solution:
            res += "".join(quotient_list[1:])
         if neg_flag: res = '-' + res
         return res
+
+class Solution(object):
+    # @return a string
+    def fractionToDecimal(self, numerator, denominator):
+        dvd, dvs = abs(numerator), abs(denominator)
+        integer, decimal, dict = "", "", {}
+
+        if dvd > dvs:
+            integer = str(dvd / dvs)
+            dvd %= dvs
+        else:
+            integer = "0"
+
+        if dvd > 0:
+            integer += "."
+
+        idx = 0
+        while dvd:
+            if dvd in dict:
+                decimal = decimal[:dict[dvd]] + "(" + decimal[dict[dvd]:] + ")"
+                break
+
+            dict[dvd] = idx
+            idx += 1
+
+            dvd *= 10
+            decimal += str(dvd / dvs)
+            dvd %= dvs
+
+        if (numerator > 0 and denominator < 0) or (numerator < 0 and denominator > 0): 
+            return "-" + integer + decimal
+        else:
+            return integer + decimal
 
 if __name__ == '__main__':
    s = Solution()

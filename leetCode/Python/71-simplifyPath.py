@@ -1,4 +1,4 @@
-class Solution:
+class Solution1:
     # @param {string} path
     # @return {string}
     def mySimplifyPath(self, path):
@@ -56,7 +56,23 @@ class Solution:
             elif i != '.' and i != '':
                 curr += '/' + i if curr != '/' else i
         return curr
-        
+
+class Solution(object):
+    '''
+    TC: O(N)
+    SC: O(N)
+    '''
+    # @param path, a string
+    # @return a string
+    def simplifyPath(self, path):
+        stack, tokens = [], path.split("/")
+        for token in tokens:
+            if token == ".." and stack:
+                stack.pop()
+            elif token != ".." and token != "." and token:
+                stack.append(token)
+        return "/" + "/".join(stack)
+
 if __name__ == '__main__':
    s = Solution()
    print s.simplifyPath("/a/./b/../../c/")

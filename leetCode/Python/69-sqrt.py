@@ -1,4 +1,4 @@
-class Solution:
+class Solution1:
     # @param {integer} x
     # @return {integer}
     def mySqrt(self, x):
@@ -14,6 +14,23 @@ class Solution:
            return int(curr_result)
         else:
            return self.newtonSqrt(s, curr_result)
+
+class Solution2:
+    # @param x, an integer
+    # @return an integer
+    def mySqrt(self, x):
+        if x == 0:
+            return 0
+        i = 1; j = x / 2 + 1
+        while( i + 1 < j ):
+            center = ( i + j ) / 2
+            if center ** 2 == x:
+                return center
+            elif center ** 2 > x:
+                j = center
+            else:
+                i = center
+        return i
 
 if __name__ == '__main__':
    s = Solution()

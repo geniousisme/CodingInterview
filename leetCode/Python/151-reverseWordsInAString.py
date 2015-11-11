@@ -1,4 +1,4 @@
-class Solution:
+class Solution1:
     # @param s, a string
     # @return a string
     def reverseWords(self, s):
@@ -14,6 +14,16 @@ class Solution:
         print s_lst
         s_lst.reverse()
         return ' '.join(s_lst)
+
+class Solution(object):
+    def reverseWords(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        s_list = s.split()
+        return ' '.join(reversed(s_list))
+
 
 if __name__ == '__main__':
    s = Solution()

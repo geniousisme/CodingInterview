@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-class Solution:
+class Solution1:
     # @param {string} s
     # @return {integer}
     def numDecodings(self, s):
@@ -23,6 +23,21 @@ class Solution:
                return 0
         # print dp
         return dp[-1]
+
+class Solution(object):
+    def numDecodings(self, s):
+        if not s or s[0] == '0':
+            return 0
+        prev_prev = 0
+        prev = 1
+        for i in xrange(len(s)):
+            curr = 0
+            if s[i] != '0':
+                curr += prev
+            if i > 0 and s[i - 1] == '1' or (s[i - 1] == '2' and s[i] < '6'):
+                curr += prev_prev
+            prev, prev_prev = curr, prev
+        return prev
 
 if __name__ == '__main__':
    s = Solution()

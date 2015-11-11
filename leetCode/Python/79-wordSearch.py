@@ -1,55 +1,56 @@
-class Solution:
-    # @param {character[][]} board
-    # @param {string} word
-    # @return {boolean}
-    def __init__(self):
-        self.wordLen = 0
-        self.length  = 0
-        self.width   = 0 
-    
-    # Chris:TODO:: change it to the following version, replace the word matching with index
+# Time:  O(m * n * l)
+# Space: O(l)
+#
+# Given a 2D board and a word, find if the word exists in the grid.
+#
+# The word can be constructed from letters of sequentially adjacent cell, 
+# where "adjacent" cells are those horizontally or vertically neighboring. 
+# The same letter cell may not be used more than once.
+#
+# For example,
+# Given board =
+#
+# [
+#   "ABCE",
+#   "SFCS",
+#   "ADEE"
+# ]
+# word = "ABCCED", -> returns true,
+# word = "SEE", -> returns true,
+# word = "ABCB", -> returns false.
+#
 
+class Solution:
+    # @param board, a list of lists of 1 length string
+    # @param word, a string
+    # @return a boolean
     def exist(self, board, word):
-        self.wordLen = len(word)
-        self.length  = len(board[0][0])
-        self.width   = len(board)
-        res          = False
-        for i in xrange(self.width):
-            board[i] = list(board[i][0])
-        
-        for i in xrange(self.width):
-            for j in xrange(self.length):
-                if board[i][j] == word[0]:
-                   res |= self.dfs(board, i, j, "", word)
-        return res
-    
-    def dfs(self, board, i, j, pastword, word):
-        currLen = len(pastword) + 1
-        if self.width > i > -1 and self.length > j > -1:  
-           visitword = board[i][j]
-           
-           if currLen == self.wordLen:
-              # print pastword + board[i][j]
-              if pastword + visitword == word:
-                 # print pastword + board[i][0][j]
-                 return True
-              else:
-                 return False
-           elif currLen < self.wordLen:
-                # print pastword + board[i][0][j]
-                board[i][j] = '#'
-                result =                                                     \
-                (self.dfs(board, i + 1, j, pastword + visitword, word) or    \
-                 self.dfs(board, i, j + 1, pastword + visitword, word) or    \
-                 self.dfs(board, i - 1, j, pastword + visitword, word) or    \
-                 self.dfs(board, i, j - 1, pastword + visitword, word))
-                board[i][j] = visitword
-                return result
-           else:
-                return False
+        visited = [[False for j in xrange(len(board[0]))] for i in xrange(len(board))]
+
+        for i in xrange(len(board)):
+            for j in xrange(len(board[0])):
+                if self.existRecu(board, word, 0, i, j, visited):
+                    return True
+
         return False
 
-class Solution:
+    def existRecu(self, board, word, cur, i, j, visited):
+        if cur == len(word):
+            return True
+
+        if i < 0 or i >= len(board) or j < 0 or j >= len(board[0]) or visited[i][j] or board[i][j] != word[cur]:
+            return False
+
+        visited[i][j] = True
+        result = self.existRecu(board, word, cur + 1, i + 1, j, visited) or\
+                 self.existRecu(board, word, cur + 1, i - 1, j, visited) or\
+                 self.existRecu(board, word, cur + 1, i, j + 1, visited) or\
+                 self.existRecu(board, word, cur + 1, i, j - 1, visited)         
+        visited[i][j] = False
+
+        return result
+
+class Solution1:
     # @param board, a list of lists of 1 length string
     # @param word, a string
     # @return a boolean
@@ -59,7 +60,7 @@ class Solution:
             for j in range(0, len(board[0])):
                 solution = solution or self.existRec(board, word, i, j, 0)
         return solution
-        
+
     def existRec(self, board, word, row, col, index):
         if row < 0 or row>=len(board) or col<0 or col>=len(board[0]) or  board[row][col]!=word[index]:
             return False
@@ -72,7 +73,7 @@ class Solution:
 
 # Chris:TODO:: rewrite the iterative version
 
-class Solution:
+class Solution2:
     # @param board, a list of lists of 1 length string
     # @param word, a string
     # @return a boolean
@@ -104,7 +105,7 @@ class Solution:
                     return True
                 board[x][y]=tmp
             return False
-                
+
         for i in range(len(board)):
             for j in range(len(board[0])):
                 if board[i][j]==word[0]:

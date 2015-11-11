@@ -1,4 +1,13 @@
-class Solution:
+# Time:  O(m * n)
+# Space: O(m + n)
+#
+# Given two numbers represented as strings, return multiplication of the numbers as a string.
+# 
+# Note: The numbers can be arbitrarily large and are non-negative.
+#
+
+
+class Solution1:
     # @param {string} num1
     # @param {string} num2
     # @return {string}
@@ -42,7 +51,27 @@ class Solution:
             digit      -= 1
         return int_result
 
-
+class Solution(object):
+    def multiply(self, num_str1, num_str2):
+        num1_len = len(num_str1)
+        num2_len = len(num_str2)
+        num_str1 = num_str1[::-1]
+        num_str2 = num_str2[::-1]
+        arr = [0 for i in xrange(num1_len + num2_len)]
+        for i in xrange(num1_len):
+            for j in xrange(num2_len):
+                arr[i + j] += int(num_str1[i]) * int(num_str2[j])
+        carry = 0
+        for i in xrange(num1_len + num2_len):
+            arr[i] += carry
+            carry  = arr[i] // 10
+            arr[i] %= 10
+        non_zero_idx = num1_len + num2_len - 1
+        while arr[non_zero_idx] == 0:
+            non_zero_idx -= 1
+            if non_zero_idx == 0:
+                break
+        return "".join([str(arr[i]) for i in xrange(non_zero_idx, -1, -1)])
 if __name__ == '__main__':
    s = Solution()
    print s.str2int('1345678900987654')
