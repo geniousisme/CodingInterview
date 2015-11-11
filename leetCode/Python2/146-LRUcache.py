@@ -1,3 +1,8 @@
+'''
+TC: O(1) per action
+SC: O(N)
+'''
+
 class ListNode(object):
     def __init__(self, key, val):
         self.val = val
