@@ -16,15 +16,4 @@ class Solution:
             maxV     = max(maxV, prices[length - 1 - i])
             minDP[i] = max(minDP[i - 1], prices[i] - minV)
             maxDP[length - 1 - i] = max(maxDP[length - i], maxV - prices[length - 1 - i])
-        
-        # for i in xrange(length - 2, -1, -1):
-        #     maxV     = max(maxV, prices[i])
-        #     maxDP[i] = max(maxDP[i + 1], maxV - prices[i])
-
         return max([maxDP[i] + minDP[i] for i in xrange(length)])
-
-
-
-
-
-        
