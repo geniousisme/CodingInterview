@@ -7,6 +7,7 @@ class ListNode:
 class Solution:
     # @param {ListNode} head
     # @return {ListNode}
+    # basically, it is merge sort with linked list version
     def sortList(self, head):
         if head is None or head.next is None:
             return head

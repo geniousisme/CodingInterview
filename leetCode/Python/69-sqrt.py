@@ -15,7 +15,7 @@ class Solution1:
         else:
            return self.newtonSqrt(s, curr_result)
 
-class Solution2:
+class Solution:
     # @param x, an integer
     # @return an integer
     def mySqrt(self, x):

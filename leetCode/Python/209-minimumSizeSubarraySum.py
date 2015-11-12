@@ -21,7 +21,11 @@ class Solution:
         start = end = sum = 0
         length = len(nums)
         min_length = length + 1
-        
+        # maintain two pointers, one start from 0 index, iterate the array and sum
+        # the element, once sum is more than target s, then we start another pointer from 0
+        # minus the value from the sum, and record the min_length which is beeger or equal to
+        # target s, if sum is smaller than s, then we repeat the process, until the first ptr
+        # meet the length of nums
         while end < length:
               while end < length and sum < s:
                     sum += nums[end]
