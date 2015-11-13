@@ -14,3 +14,36 @@ def reservoir_sampling(stream):
 
     for line in sample:
         sys.stdout.write(line)
+
+def reservoir_sampling(input, k):
+    samples = []
+    for i in xrange(len(input)):
+        if i < k:
+            sample.append(input[i])
+        elif i > k and random.random() < k / float(i + 1):
+            replace = random.randint(len(sample) - 1)
+            sample[replace] = input[i]
+
+def random_subset( iterator, K ):
+    result = []
+    N = 0
+
+    for item in iterator:
+        N += 1
+        if len( result ) < K:
+            result.append( item )
+        else:
+            s = int(random.random() * N)
+            if s < K:
+                result[ s ] = item
+
+    return result
+
+def random_select(iterator):
+    N = 0
+    ans = 0
+    for item in iterator:
+        N += 1
+        if random.random() < 1.0 / N:
+            ans = item
+    return ans

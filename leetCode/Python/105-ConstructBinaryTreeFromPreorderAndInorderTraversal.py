@@ -7,4 +7,4 @@ class Solution:
         i = inorder.index(first)
         node.left = self.buildTree(preorder, inorder[0:i])
         node.right = self.buildTree(preorder,inorder[i+1:])
-        return node     
+        return node

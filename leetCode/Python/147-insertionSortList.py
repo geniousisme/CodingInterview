@@ -1,3 +1,10 @@
+# Time:  O(n ^ 2)
+# Space: O(1)
+#
+# Sort a linked list using insertion sort.
+#
+
+
 # Definition for singly-linked list.
 class ListNode:
     def __init__(self, x):
@@ -7,47 +14,32 @@ class ListNode:
 class Solution:
     # @param {ListNode} head
     # @return {ListNode}
-    
-    # Chris::TODO:check with the url, 
-    # there is a detailed graph which help you understand so much:
-    # http://www.cnblogs.com/zuoyuan/p/3700105.html
-    
+
     def insertionSortList(self, head):
-
-        # newhead = ListNode(-9999); newhead.next = ListNode(head.val)
-        # new_tmp = newhead
-        # dummy = head.next
-        # # self.print_llst(start)
-        # while dummy:
-        #       print 'dummy', dummy.val
-        #       while new_tmp.next and dummy.val > new_tmp.next.val:
-        #             new_tmp.next = new_tmp.next.next
-        #       # self.print_llst(start)
-        #       tmp = new_tmp.next
-        #       new_tmp.next = ListNode(dummy.val)
-        #       new_tmp.next.next = tmp
-        #       self.print_llst(newhead)
-        #       new_tmp.next = newhead
-        #       dummy = dummy.next
-        # return newhead
-
-        if head is None:
-           return head
-        current = head
-        dummy = ListNode(-999)
+        if head is None or self.is_sorted(head):
+            return head
+        dummy = ListNode(float("-inf"))
         dummy.next = head
-        while current.next:
-              if current.next.val < current.val:
-                 pre = dummy
-                 while pre.next.val < current.next.val:
-                       pre = pre.next
-                 tmp = current.next
-                 current.next = tmp.next
-                 tmp.next = pre.next
-                 pre.next = tmp
-              else: # ascending, continue
-                 current = current.next
+        curr = dummy
+        while curr.next:
+            if curr.val > curr.next.val:
+                prev = dummy
+                while prev.next.val < curr.next.val:
+                    prev = prev.next
+                tmp = curr.next
+                curr.next = tmp.next
+                tmp.next = prev.next
+                prev.next = tmp
+            else:
+                curr = curr.next
         return dummy.next
+
+    def is_sorted(self, head):
+        while head.next:
+            if head.val > head.next.val:
+                return False
+            head = head.next
+        return True
 
     def print_llst(self, head):
         llst = ""
