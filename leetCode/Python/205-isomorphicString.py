@@ -3,6 +3,10 @@ class Solution:
     # @param {string} t
     # @return {boolean}
     def isIsomorphicI(self, s, t):
+        '''
+        TC: O(N ^ 2)
+        SC: O(N)
+        '''
         length = len(s)
         dictionary = {}
         if length == 1:
@@ -19,6 +23,10 @@ class Solution:
         return True
 
     def isIsomorphic(self, str1, str2):
+        '''
+        TC: O(N)
+        SC: O(2N)
+        '''
         if len(str1) != len(str2):
             return False
         return self.is_isomorphic_check(str1, str2) and self.is_isomorphic_check(str2, str1)

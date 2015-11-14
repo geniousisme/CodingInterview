@@ -1,3 +1,15 @@
+# Time:  O(n)
+# Space: O(1)
+#
+# Given a linked list and a value x, partition it such that all nodes less than x come before nodes greater than or equal to x.
+# 
+# You should preserve the original relative order of the nodes in each of the two partitions.
+# 
+# For example,
+# Given 1->4->3->2->5->2 and x = 3,
+# return 1->2->2->4->3->5.
+#
+
 # Definition for singly-linked list.
 class ListNode:
     def __init__(self, x):
@@ -10,7 +22,7 @@ class Solution:
     # @return {ListNode}
     def partition(self, head, x):
         if head is None or head.next is None: return head
-        small_start = ListNode(-1); large_start = ListNode(-1) 
+        small_start = ListNode(-1); large_start = ListNode(-1)
         small_start.next = large_start.next = head
         stmp = small_start; ltmp = large_start
         while stmp.next:
