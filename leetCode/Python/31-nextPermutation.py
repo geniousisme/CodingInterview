@@ -25,17 +25,24 @@ class Solution:
     # 然后将partition之后的元素逆序排列，即432排列为234，则最后输出的next permutation为15234。确实很巧妙。
     def nextPermutation(self, num):
         length = len(num); end = length - 1; partition = -1
+        # find the biggest number which is bigger the partition number
         for i in xrange(end, 0, -1):
             if num[i] > num[i - 1]:
                partition = i - 1
                break
+        # if there is no such thing, which mean the biggest number is already
+        # in the front, no next biggest number, we reverse the list directly
+        # as the question wisj
         if partition == -1:
            self.reverse(num, 0, end)
            return
+        # from the end of the list, try to find the bigger number than partition & swap with it.
+        # which can make sure the number we are going to build is the next 'biggest' number
         for i in xrange(end, partition, -1):
             if num[i] > num[partition]:
                self.swap_in_list(num, i, partition)
                break
+        # finally, reverse the partition after part index, make sure the part can be the smallest
         self.reverse(num, partition + 1, end)
 
     def reverse(self, lst, start, end):
