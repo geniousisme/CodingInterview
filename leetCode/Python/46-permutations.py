@@ -1,3 +1,14 @@
+# Time:  O(n * n!)
+# Space: O(n)
+#
+# Given a collection of numbers, return all possible permutations.
+#
+# For example,
+# [1,2,3] have the following permutations:
+# [1,2,3], [1,3,2], [2,1,3], [2,3,1], [3,1,2], and [3,2,1].
+#
+
+
 class Solution1:
     # @param num, a list of integer
     # @return a list of lists of integers
@@ -23,7 +34,7 @@ class Solution(object):
     def __init__(self):
         self.res = []
         self.length = 0
-    
+
     def permute(self, nums):
         self.res = []
         if nums:
