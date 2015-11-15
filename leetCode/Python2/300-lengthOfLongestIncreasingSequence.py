@@ -37,7 +37,6 @@ class Solution2(object):
                 dp.append(nums[i])
             else:
                 dp[self.binary_search(dp, nums[i])] = nums[i]
-            print dp
         return len(dp)
 
     def binary_search(self, nums, target):

@@ -39,23 +39,36 @@ class Solution1:
         return root
 
 class Solution(object):
-    head = None
     # @param head, a list node
     # @return a tree node
     def sortedListToBST(self, head):
-        current, length = head, 0
-        while current is not None:
-            current, length = current.next, length + 1
+        length = 0
+        curr = head
+        # count the total length of the linked list
+        while curr:
+            length += 1
+            curr = curr.next
+        # make it easier to manipulate
         self.head = head
-        return self.sortedListToBSTRecu(0, length)
+        return self.convert_sorted_list_bst_helper(0, length)
 
-    def sortedListToBSTRecu(self, start, end):
+    def convert_sorted_list_bst_helper(self, start, end):
+        # if we already reach the end of the linked list, return None
         if start == end:
             return None
+        # find the mid(root for BST) first
         mid = start + (end - start) / 2
-        left = self.sortedListToBSTRecu(start, mid)
-        current = TreeNode(self.head.val)
-        current.left = left
+        # find the left child of the root.
+        left = self.convert_sorted_list_bst_helper(start, mid)
+        # assign the node for the root
+        root = TreeNode(self.head.val)
+        # connect left to the root
+        root.left = left
+        # move it to the next head
         self.head = self.head.next
-        current.right = self.sortedListToBSTRecu(mid + 1, end)
-        return current
+        # connect right to the head
+        root.right = self.convert_sorted_list_bst_helper(mid + 1, end)
+        return root
+
+
+
