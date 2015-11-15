@@ -15,6 +15,7 @@ class Solution(object):
     def findDuplicate(self, nums):
         # Time:  O(n)
         # Space: O(1)
+
         # Treat each (key, value) pair of the array as the (pointer, next) node of the linked list,
         # thus the duplicated number will be the begin of the cycle in the linked list.
         # Besides, there is always a cycle in the linked list which
@@ -37,12 +38,14 @@ class Solution1(object):
     def findDuplicate(self, nums):
         # Time:  O(nlogn)
         # Space: O(1)
+
         # binary search solution
         start = 1; end = len(nums) - 1
         # use binary search to find the left boundry
         # ex. 1 3 4 2 2, mid = 2, count = 3, which means mid is too big(more than 2.5, the half of length)
         # then end should be mid - 1 to find the left boundry; on the other hand, in the next round
-        # we know that mid = 1(start = 1, end = 1), then it is too small to find the duplicate, so start = mid + 1
+        # we know that mid = 1(start = 1, end = 1),
+        # then it is too small to find the duplicate, so start = mid + 1
         # then we get the duplicate value
         while start <= end:
             mid   = start + (end - start) / 2
