@@ -1,11 +1,28 @@
+# Time:  O(n * h)
+# Space: O(h)
+#
+# Given a binary tree, return all root-to-leaf paths.
+#
+# For example, given the following binary tree:
+#
+#   1
+#  /   \
+# 2     3
+#  \
+#   5
+# All root-to-leaf paths are:
+#
+# ["1->2->5", "1->3"]
+#
+#
 # Definition for a binary tree node.
-class TreeNode:
-    def __init__(self, x):
-        self.val = x
-        self.left = None
-        self.right = None
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
 
-class Solution:
+class Solution1:
     # @param {TreeNode} root
     # @return {string[]}
     def __init__(self):
@@ -16,19 +33,34 @@ class Solution:
            self.traverse(root, str(root.val))
         return self.res
 
-    def traverse(self, node, path): 
+    def traverse(self, node, path):
         if node.right is None and node.left is None:
            self.res.append(path)
-           return 
+           return
         if node.left:
            self.traverse(node.left, path + '->' + str(node.left.val))
         if node.right:
            self.traverse(node.right, path + '->' + str(node.right.val))
-        # if node is None:
-        #    self.res.append(path)
-        #    return        
-        # self.traverse(node.left,  path + str(node.val))
-        # self.traverse(node.right, path + str(node.val))
+
+
+class Solution(object):
+    # @param {TreeNode} root
+    # @return {string[]}
+    def binaryTreePaths(self, root):
+        if root is None:
+            return []
+        queue = [ [root, str(root.val)] ]
+        ans = []
+        while queue:
+            front, path = queue.pop(0)
+            if front.left is None and front.right is None:
+                ans += path,
+                continue
+            if front.left:
+                queue += [front.left, path + "->" + str(front.left.val)],
+            if front.right:
+                queue += [front.right, path + "->" + str(front.right.val)],
+        return ans
 
 if __name__ == "__main__":
    s = Solution()
