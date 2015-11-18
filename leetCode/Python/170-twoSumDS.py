@@ -1,4 +1,4 @@
-class TwoSum:
+nclass TwoSum:
 
     # initialize your data structure here
     def __init__(self):
@@ -32,5 +32,3 @@ if __name__ == '__main__':
    print s.find(0)
    s.add(0)
    print s.find(0)
-
-        
