@@ -51,14 +51,28 @@ class Solution:
         return res
 
     def maxSlidingWindow(self, nums, k):
+        '''
+        TC: O(n)
+        SC: O(k)
+        '''
         dequeue = []
         max_numbers = []
         for i in xrange(len(nums)):
+            # since we want to use idx to maintain the window size with k length
+            # we store the index to the array, but not the val
             while dequeue and nums[dequeue[-1]] <= nums[i]:
+                # and we keep the first index of the dequeue as the current max
+                # so compare with the last, if the last index val is smaller than current element
+                # just pop out
                 dequeue.pop()
+            # now we can append the idx
             dequeue.append(i)
+            # if the first index is already equal to i - k, which means it exceeds the k size
+            # we need to pop it out
             if dequeue[0] == i - k:
                 dequeue.pop(0)
+            # if the i is bigger than k - 1, which mean we reach k size, start to put 0 index values
+            # into the max_numbers
             if i >= k - 1:
                 max_numbers.append(nums[dequeue[0]])
         return max_numbers

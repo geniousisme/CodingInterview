@@ -1,3 +1,20 @@
+# Time:  O(n^2)
+# Space: O(1)
+#
+# Given an array S of n integers,
+# are there elements a, b, c in S such that a + b + c = 0?
+# Find all unique triplets in the array which gives the sum of zero.
+#
+# Note:
+# Elements in a triplet (a,b,c) must be in non-descending order. (ie, a <= b <= c)
+# The solution set must not contain duplicate triplets.
+#    For example, given array S = {-1 0 1 2 -1 -4},
+#
+#    A solution set is:
+#    (-1, 0, 1)
+#    (-1, -1, 2)
+#
+
 class Solution1:
     # @return a list of lists of length 3, [[val1,val2,val3]]
     # -4 -1 -1 0 1 2
@@ -33,20 +50,29 @@ class Solution1:
         num_list = sorted(num_list)
         left = 0; right = len(num_list) - 1
 
-'''
-time:  O(N^2)
-space: O(1)
-1. sort nums
-2. start from zero, and search for other nums with two ptr method which sum up as zero.
-3. avoid repated
-'''
+class Solution2(object):
+    def threeSum(self, nums):
+        val_dict = {}
+        for i in xrange(len(nums)):
+            val_dict[nums[i]] = i
+        res = []
+        for i in xrange(len(nums)):
+            for j in xrange(i + 1, len(nums)):
+                if -(nums[i] + nums[j]) in val_dict:
+                    res.append(sorted([-(nums[i] + nums[j]), nums[i], nums[j]]))
+        return res
+
 # notice: this one has many detail, need to practice more!
 class Solution(object):
     def threeSum(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: List[List[int]]
-        """
+        '''
+        time:  O(N^2)
+        space: O(1)
+        1. sort nums
+        2. start from zero, and search for other nums with
+           two ptr method which sum up as zero.
+        3. avoid repated
+        '''
         nums.sort() # sort the nums first
         res = []
         length = len(nums)
@@ -72,15 +98,15 @@ class Solution(object):
         return res
 
 if __name__ == "__main__":
-    import time
-    start = time.clock()
-    s = Solution()
+    # import time
+    # start = time.clock()
+    s = Solution2()
     num = []
     print s.threeSum(num)
     num = [-1, 0, 1]
     print s.threeSum(num)
     num = [0, 0, 0]
     print s.threeSum(num)
-    num = [-4,-2,1,-5,-4,-4,4,-2,0,4,0,-2,3,1,-5,0]
-    print s.threeSum(num)
-    print "%s sec" % (time.clock() - start)
+    # num = [-4,-2,1,-5,-4,-4,4,-2,0,4,0,-2,3,1,-5,0]
+    # print s.threeSum(num)
+    # print "%s sec" % (time.clock() - start)
