@@ -1,20 +1,19 @@
 # Time:  O(n)
 # Space: O(1)
 #
-# Given a binary tree, return the inorder traversal of its nodes' values.
+# Given a binary tree, return the preorder traversal of its nodes' values.
 #
 # For example:
 # Given binary tree {1,#,2,3},
-#   1
-#    \
-#     2
-#    /
-#   3
-# return [1,3,2].
+#    1
+#     \
+#      2
+#     /
+#    3
+# return [1,2,3].
 #
 # Note: Recursive solution is trivial, could you do it iteratively?
 #
-
 
 # Definition for a binary tree node.
 class TreeNode:
@@ -24,13 +23,11 @@ class TreeNode:
         self.right = None
 
 class MorrisSolution(object):
-    # @param root, a tree node
-    # @return a list of integers
     '''
     TC: O(n)
     SC: O(1)
     '''
-    def inorderTraversal(self, root):
+    def preorderTraversal(self, root):
         curr = root; prev = None; res = []
         while curr:
             if curr.left is None:
@@ -42,46 +39,46 @@ class MorrisSolution(object):
                     prev = prev.right
 
                 if prev.right is None:
+                    res.append(curr.val)
                     prev.right = curr
                     curr = curr.left
                 else:
-                    res.append(curr.val)
                     prev.right = None
                     curr = curr.right
         return res
 
-class Solution(object):
+class Solution:
     # @param {TreeNode} root
     # @return {integer[]}
     '''
     TC: O(n)
-    SC: O(n)
+    SC: O(1)
     '''
-    def __init__(self):
-        self.stack = []
-        self.res   = []
+    def preorderTraversal(self, root):
+        res = []
+        if root:
+           self.iterPreorderVisit(root, res)
+        return res
 
-    def inorderTraversal(self, root):
-        self.recursive_traverse(root)
-        return self.res
-
-    def recursive_traverse(self, node): # recursive
-        if node:
-           self.recursive_traverse(node.left)
-           self.res.append(node.val)
-           self.recursive_traverse(node.right)
+    def recPreorderVisit(self, root, res): # recursive
+        if root:
+           res.append(root.val)
+           self.preorderVisit(root.left, res)
+           self.preorderVisit(root.right, res)
         return
 
-    def iterTraverse(self, root): # iterative
-        while root or self.stack:
+    def iterPreorderVisit(self, root, res): # iterative
+        stack = []
+        while root or stack:
               if root:
-                 self.stack.append(root)
+                 res.append(root.val)
+                 stack.append(root)
                  root = root.left
               else:
-                 root = self.stack.pop()
-                 self.res.append(root.val)
+                 root = stack.pop()
                  root = root.right
-        return
+        return res
+
 if __name__ == "__main__":
     ms = MorrisSolution()
     t1 = TreeNode(1)
@@ -97,4 +94,6 @@ if __name__ == "__main__":
     t2.right = t5
     t3.left = t6
     t3.right = t7
-    print ms.inorderTraversal(t1)
+    print ms.preorderTraversal(t1)
+
+
