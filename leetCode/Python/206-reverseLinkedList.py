@@ -4,20 +4,7 @@ class ListNode:
         self.val = x
         self.next = None
 
-class Solution:
-    # @param {ListNode} head
-    # @return {ListNode}
-    # def reverseList(self, head):
-    #     if head is None or head.next is None:
-    #        return head
-    #     new_node = ListNode(-1); last = None
-    #     while head:
-    #           new_node = ListNode(head.val) 
-    #           new_node.next = last
-    #           last = new_node
-    #           head = head.next
-    #     return new_node
-
+class Solution1: # iterative
     def reverseList(self, head):
         p = head
         start = None
@@ -36,6 +23,18 @@ class Solution:
                  llst += '->'
               head = head.next
         print llst
+
+class Solution(object): # recursive
+    def reverse(self, head):
+        return self.reverse_helper(head, None)
+
+    def reverse_helper(self, head, start):
+        if head is None:
+            return start
+        else:
+            nxt = head.next
+            head.next = start
+            return self.reverse_helper(nxt, head)
 
 if __name__ == '__main__':
    s = Solution()
