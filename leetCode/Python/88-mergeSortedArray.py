@@ -1,3 +1,13 @@
+# Time:  O(n)
+# Space: O(1)
+#
+# Given two sorted integer arrays A and B, merge B into A as one sorted array.
+#
+# Note:
+# You may assume that A has enough space (size that is greater or equal to m + n) to hold additional elements from B. 
+# The number of elements initialized in A and B are m and n respectively.
+#
+
 class Solution:
     # @param {integer[]} nums1
     # @param {integer} m
@@ -5,9 +15,9 @@ class Solution:
     # @param {integer} n
     # @return {void} Do not return anything, modify nums1 in-place instead.
     def mergeI(self, nums1, m, nums2, n):
-        if not (nums1 and nums2): 
+        if not (nums1 and nums2):
            nums1.extend(nums2)
-           return 
+           return
         tmp = [0 for i in xrange(m + n)]
         i1 = i2 = it = 0
         while i1 < m and i2 < n:
@@ -20,12 +30,12 @@ class Solution:
               it += 1
         while i2 < n:
               tmp[it] = nums2[i2]
-              i2 += 1; it += 1 
+              i2 += 1; it += 1
         while i1 < m:
               tmp[it] = nums1[i1]
               i1 += 1; it += 1
         for i in xrange(m + n):
-            nums1[i] = tmp[i] 
+            nums1[i] = tmp[i]
 
     def mergeII(self, nums1, m, nums2, n):
         total_len = len(nums1)
@@ -40,12 +50,12 @@ class Solution:
               else:
                  nums1[i] = nums2[idx2]
                  idx2    += 1
-              i += 1 
+              i += 1
         while idx2 < n:
               nums1[idx2 - n] = nums2[idx2]
               idx2 += 1
 
-    def merge(self, nums1, m, nums2, n):
+    def merge(self, nums1, m, nums2, n): # simplest method
         idx1 = m - 1; idx2 = n - 1; total_idx = m + n - 1
         while idx2 > -1 and idx1 > -1:
               if nums1[idx1] > nums2[idx2]:
