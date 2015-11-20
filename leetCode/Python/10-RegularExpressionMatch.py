@@ -1,8 +1,8 @@
 # Implement regular expression matching with support for '.' and '*'.
-# 
+#
 # '.' Matches any single character.
 # '*' Matches zero or more of the preceding element.
-# 
+#
 # The matching should cover the entire input string (not partial).
 #
 # The function prototype should be:
@@ -57,19 +57,24 @@ class DPSolution(object): # dp solution
 class Solution(object): # recursive
     # @return a boolean
     def isMatch(self, s, p):
+        # if no p, then the s should also be ""
         if not p:
             return not s
-
+        # first, check if p[1] == '*' or not
         if len(p) == 1 or p[1] != '*':
+            # check if the first elems of s & p are equal or first elem of p is '.'
             if len(s) > 0 and (p[0] == s[0] or p[0] == '.'):
                 return self.isMatch(s[1:], p[1:])
             else:
                 return False
         else:
+            # len(p) > 1 and p[1] == '*'
             while len(s) > 0 and (p[0] == s[0] or p[0] == '.'):
                 if self.isMatch(s, p[2:]): # p[1] == '*' case
                     return True
+                # not match, move forward to check
                 s = s[1:]
+            # common case
             return self.isMatch(s, p[2:])
 
 

@@ -25,7 +25,7 @@ class Solution:
                 if nums[i] + nums[j] + nums[k] >= target:
                     j -= 1
                 else:
-                    count += j - i
+                    count += j - i # can add all the combinations at one time
                     i += 1
             k += 1
         return count
@@ -33,3 +33,4 @@ class Solution:
 if __name__ == "__main__":
     s = Solution()
     print s.threeSumSmaller([-2, 0, 1, 3], 2)
+    print s.threeSumSmaller([-1, 0, 1, 4, -2], 3)
