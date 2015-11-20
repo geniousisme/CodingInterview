@@ -9,7 +9,7 @@ class Solution:
     # D       500
     # M       1,000
     # special_dict = {
-    #                 4:'IV', 
+    #                 4:'IV',
     #                 9:'IX',
     #                 40:'XL',
     #                 90:'XC',
