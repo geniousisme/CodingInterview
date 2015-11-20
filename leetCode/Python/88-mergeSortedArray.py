@@ -61,21 +61,12 @@ class Solution:
               if nums1[idx1] > nums2[idx2]:
                  nums1[total_idx] = nums1[idx1]
                  idx1 -= 1
+                 total_idx -= 1
               else:
                  nums1[total_idx] = nums2[idx2]
                  idx2 -= 1
-              total_idx -= 1
+                 total_idx -= 1
         while idx2 > -1:
               nums1[total_idx] = nums2[idx2]
               idx2 -= 1
-
-if __name__ == '__main__':
-   s = Solution()
-   # nums1 = [4, 10, 13, 17, 20, 25, 30, 41, 0, 0, 0, 0, 0, 0, 0]
-   # nums2 = [1, 3, 8, 11, 15, 19, 27]
-   # s.merge(nums1, 8, nums2, 7)
-   # s.merge([-1,0,1,1,0,0,0,0,0], 4, [-1,0,2,2,3], 5)
-   nums1 = [9,10,11,12,13]
-   nums2 = [4,5,6,7]
-   s.merge(nums1, 5, nums2, 4)
-   print nums1
+              total_idx -= 1
