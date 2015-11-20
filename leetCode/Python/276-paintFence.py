@@ -8,6 +8,7 @@
 
 # DP solution with rolling window.
 class Solution(object): # dp solution, just store the two latest results
+    # reference: http://www.cnblogs.com/jcliBlogger/p/4783051.html
     # s means same and stands for the last element of your dp1; d means different,
     # d1 and d2 stands for the last two elements of your dp2.
     # In each loop, dp1[i] = dp2[i - 1] turns into s = d2 and dp2[i] = (k - 1) * (dp2[i - 2] + dp2[i - 1])
