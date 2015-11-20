@@ -4,6 +4,15 @@ class ListNode:
         self.val = x
         self.next = None
 
+def print_llst(head):
+    llst = ""
+    while head:
+          llst += str(head.val)
+          if head.next:
+             llst += '->'
+          head = head.next
+    print llst
+
 class Solution1: # iterative
     def reverseList(self, head):
         p = head
@@ -14,15 +23,6 @@ class Solution1: # iterative
             start = p
             p = next
         return start
-
-    def print_llst(self, head):
-        llst = ""
-        while head:
-              llst += str(head.val)
-              if head.next:
-                 llst += '->'
-              head = head.next
-        print llst
 
 class Solution(object): # recursive
     def reverse(self, head):
@@ -44,8 +44,4 @@ if __name__ == '__main__':
    test.next.next.next = ListNode(4)
    test.next.next.next.next = ListNode(5)
 
-   s.print_llst(s.reverse(test))
-
-
-
-              
+   print_llst(s.reverse(test))
