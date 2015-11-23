@@ -1,6 +1,6 @@
 class Solution:
     def buildTree(self, preorder, inorder):
-        if not preorder or not inorder: 
+        if not preorder or not inorder:
             return None
         first = preorder.pop(0)
         node = TreeNode(first)
