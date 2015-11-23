@@ -1,3 +1,5 @@
+# Reverse a singly linked list.
+
 # Definition for singly-linked list.
 class ListNode:
     def __init__(self, x):
@@ -13,6 +15,10 @@ def print_llst(head):
           head = head.next
     print llst
 
+'''
+Time:  O(n)
+Space: O(1)
+'''
 class Solution1: # iterative
     def reverseList(self, head):
         p = head
@@ -24,6 +30,10 @@ class Solution1: # iterative
             p = next
         return start
 
+'''
+Time:  O(n)
+Space: O(1)
+'''
 class Solution(object): # recursive
     def reverse(self, head):
         return self.reverse_helper(head, None)
