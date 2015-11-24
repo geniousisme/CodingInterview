@@ -9,6 +9,8 @@ class Solution(object):
         """
         :type digits: List[int]
         :rtype: List[int]
+        Time:  O(n)
+        Space: O(1)
         """
         length = len(digits)
         carry  = 1
