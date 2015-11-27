@@ -62,7 +62,7 @@ class Solution1:
                     queue.insert(0, (x, y + 1))
                  if y - 1 > -1:
                     queue.insert(0, (x, y - 1))
-                 
+
 
     def print_matrix(self, matrix):
         for i in xrange(len(matrix)):

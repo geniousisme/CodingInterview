@@ -11,7 +11,7 @@
 # By calling next repeatedly until hasNext returns false,
 # the order of elements returned by next should be: [1, 2, 3, 4, 5, 6].
 
-class Vector2D:
+class Vector2D(object):
     # Initialize your data structure here.
     # @param {integer[][]} vec2d
     def __init__(self, vec2d):
@@ -35,11 +35,11 @@ class Vector2D:
 
     # @return {boolean}
     def hasNext(self):
-        return self.x != len(self.vec) and self.y != len(self.vec[self.x])
+        return self.x < len(self.vec) and self.y < len(self.vec[self.x])
 
     def adjust_next_iter(self):
         # use while to skip the empty vector, see the third test case
-        while self.x < len(self.vec) and self.y == len(self.vec[self.x]):
+        while self.x < len(self.vec) and self.y >= len(self.vec[self.x]):
             # if it reach the end of the vector, then move the next row
             self.x += 1
             # and set the col to zero to start from the beginning.
@@ -50,13 +50,6 @@ if __name__ == "__main__":
     vec2d = Vector2D([[1, 2, 3], [4, 5], [6, 7]])
     print vec2d.next()
     print vec2d.next()
-    print vec2d.next()
-    print vec2d.next()
-    print vec2d.next()
-    print vec2d.next()
-    print vec2d.next()
-    print vec2d.next()
-    vec2d = Vector2D([])
     print vec2d.next()
     print vec2d.next()
     print vec2d.next()
