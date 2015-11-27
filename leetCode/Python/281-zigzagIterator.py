@@ -13,7 +13,10 @@
 
 import collections
 class ZigzagIterator(object):
-
+    '''
+    Time:  O(n)
+    Space: O(n)
+    '''
     def __init__(self, v1, v2):
         self.dq = collections.deque([(len(v), iter(v)) for v in (v1, v2) if v])
 
