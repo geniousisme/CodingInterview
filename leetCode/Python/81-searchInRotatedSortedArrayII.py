@@ -1,4 +1,38 @@
-class Solution:
+# Follow up for "Search in Rotated Sorted Array":
+# What if duplicates are allowed?
+# Would this affect the run-time complexity? How and why?
+# Write a function to determine if a given target is in the array.
+
+class Solution(object):
+    def search(self, nums, target):
+        '''
+        Time:  O(n)
+        Space: O(1)
+        '''
+        start = 0; end = len(nums) - 1
+        while start + 1 < end:
+            mid = (start + end) / 2
+            if nums[mid] == target:
+                return True
+            if nums[start] == nums[mid]:
+                start = start + 1
+            elif nums[start] < nums[mid]:
+                if nums[start] <= target <= nums[mid]:
+                    end = mid
+                else:
+                    start = mid
+            else:
+                if nums[mid] <= target <= nums[end]:
+                    start = mid
+                else:
+                    end = mid
+        if nums[start] == target:
+            return True
+        if nums[end] == target:
+            return True
+        return False
+
+class Solution1:
     # @param {integer[]} nums
     # @param {integer} target
     # @return {integer}
