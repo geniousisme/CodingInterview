@@ -15,8 +15,8 @@ def quicksortInPlace(nums, start, end): # in-place version
             swap(nums, left, right)
             left  += 1
             right -= 1
-    quicksort(nums, left,  end  )
-    quicksort(nums, start, right)
+    quicksortInPlace(nums, left,  end  )
+    quicksortInPlace(nums, start, right)
 
 def swap(nums, left, right):
     nums[left], nums[right] = nums[right], nums[left]
