@@ -6,4 +6,3 @@ class Solution:
             if target - n in numIdxDict:
                 return (numIdxDict[target - n] + 1, idx + 1)
             numIdxDict[n] = idx
-            
