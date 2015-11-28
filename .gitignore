@@ -2,4 +2,8 @@
 *.swp
 *.pdf
 .DS_Store
-Company\ Interview/*
+*.gslides
+*.txt
+*.png
+*.docx
+*.doc
