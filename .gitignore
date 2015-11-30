@@ -5,5 +5,7 @@
 *.gslides
 *.txt
 *.png
-*.docx
 *.doc
+*.docx
+*.ppt
+*.pptx
