@@ -40,13 +40,13 @@ class Solution(object):
         '''
         ai = len(a) - 1; bi = len(b) - 1; curr = carry = 0; res = ""
         while ai >= 0 or bi >= 0:
+            curr = carry # notice!
             if ai >= 0:
                 curr += int(a[ai])
                 ai -= 1
             if bi >= 0:
                 curr += int(b[bi])
                 bi -= 1
-            curr += carry
             carry = curr // 2
             res += str(curr % 2)
         if carry:
