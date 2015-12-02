@@ -47,7 +47,7 @@ class Solution1:
                else:
                   self.DFS(diff - candidates[i], candidates, comb + [candidates[i]], i + 1)
 
-class Solution(object):
+class Solution2(object):
     def __init__(self):
         self.res = []
         self.target = 0
@@ -68,6 +68,24 @@ class Solution(object):
             if i > start and candidates[i] == candidates[i - 1]:
                 continue
             self.combination_sum_helper(candidates, curr_sum + candidates[i], combination + [candidates[i]], i + 1)
+
+class Solution(object):
+    def combinationSum2(self, candidates, target):
+        def comb_sum_helper(comb, curr_sum, start):
+            if curr_sum == target:
+                res.append(comb)
+                return
+            if curr_sum > target:
+                return
+            for i in xrange(start, len(candidates)):
+                if i > start and candidates[i] == candidates[i - 1]: # make sure them starting from different point
+                    continue
+                comb_sum_helper(comb + [candidates[i]], curr_sum + candidates[i], i + 1)
+        res = []
+        if candidates:
+            candidates = sorted(candidates)
+            comb_sum_helper([], 0, 0)
+        return res
 
 if __name__ == '__main__':
    s = Solution()
