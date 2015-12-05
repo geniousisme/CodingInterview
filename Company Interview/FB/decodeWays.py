@@ -12,7 +12,29 @@
 # Given encoded message "12", it could be decoded as "AB" (1 2) or "L" (12).
 
 # The number of ways decoding "12" is 2.
-class Solution(object):
+class Solution(object): # if decode num is from 0 ~ 99
+    def numDecodings(self, s):
+        dp = [0 for _ in xrange(len(s) + 1)]
+        dp[0] = 1
+        for i in xrange(1, len(s) + 1):
+            # if s[i - 1] != '0':
+            dp[i] += dp[i - 1]
+            if i > 1 and '1' <= s[i - 2] <= '9':
+                dp[i] += dp[i - 2]
+        return dp[len(s)]
+
+class Solution(object): # if decode num is from 0 ~ 99
+    def numDecodings(self, s):
+        dp = [0 for _ in xrange(len(s) + 1)]
+        dp[0] = 1
+        for i in xrange(1, len(s) + 1):
+            # if s[i - 1] != '0':
+            dp[i] += dp[i - 1]
+            if i > 1 and '1' <= s[i - 2] <= '9':
+                dp[i] += dp[i - 2]
+        return dp[len(s)]
+
+class Solution0(object):
     def numDecodings(self, s):
         '''
         Time:  O(n)
@@ -87,5 +109,12 @@ class Solution3(object):
             prev, prev_prev = current, prev
         return prev
 if __name__ == "__main__":
-    s = Solution1()
-    print s.numDecodings("2")
+    s = Solution()
+    print s.numDecodings("919")
+    print s.numDecodings("900")
+    print s.numDecodings("0910")
+    print s.numDecodings("100")
+    print s.numDecodings("000")
+
+
+

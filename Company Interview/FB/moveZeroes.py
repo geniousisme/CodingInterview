@@ -22,6 +22,15 @@ class Solution(object):
                 non_zero_idx += 1
             idx += 1
 
+    def moveZeroesWithOrder(self, nums):
+        non_zero_idx = 0
+        for i in xrange(len(nums)):
+            if nums[i] != 0:
+                nums[non_zero_idx] = nums[i]
+                non_zero_idx += 1
+        for i in xrange(non_zero_idx, len(nums)):
+            nums[i] = 0
+
 class Solution2(object):
     '''
     Time:  O(n)
