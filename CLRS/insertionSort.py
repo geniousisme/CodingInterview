@@ -1,6 +1,6 @@
 class InsertionSort(object):
     def insertion_sort(self, nums):
-        for i in xrange(1, len(nums)):
+        for i in xrange(len(nums)):
             insert_elem = nums[i]
             insert_idx  = i
             while insert_idx > 0 and nums[insert_idx - 1] > insert_elem:
