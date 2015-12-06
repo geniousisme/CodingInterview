@@ -30,19 +30,21 @@ import collections
 
 class ValidWordAbbr(object):
     def __init__(self, dictionary):
-        self.dict = collections.defaultdict(list)
-        for word in dictionary:
-            self.dict[word[0] + str(len(word) - 2) + word[-1]].append(word)
-        print self.dict
+        if dictionary:
+            self.dict = collections.defaultdict(list)
+            for word in dictionary:
+                if len(word)
+                self.dict[word[0] + str(len(word) - 2) + word[-1]].append(word)
 
     def isUnique(self, word):
-        key = word[0] + str(len(word) - 2) + word[-1]
-        if key not in self.dict:
-            return True
-        elif len(self.dict[key]) == 1 and self.dict[key][0] == word:
-            return True
-        else:
-            return False
+        if len(word) >= 2:
+            key = word[0] + str(len(word) - 2) + word[-1]
+            if key not in self.dict:
+                return True
+            elif len(self.dict[key]) == 1 and self.dict[key][0] == word:
+                return True
+            else:
+                return False
 
 if __name__ == "__main__":
     v = ValidWordAbbr(["deer", "door", "cake", "card"])
