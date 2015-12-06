@@ -4,15 +4,19 @@
 # one possible answer is [1, 6, 2, 5, 3, 4].
 
 class Solution(object):
-      def wiggle_sort(self, nums):
-          for i in xrange(len(nums) - 1):
-            if i % 2 == 0:
-                if nums[i] > nums[i + 1]:
-                    self.swap(nums, i, i + 1)
-            else:
-                if nums[i] < nums[i + 1]:
-                    self.swap(nums, i, i + 1)
-          return nums
+      '''
+      Time:  O(n)
+      Space: O(1)
+      '''
+      def wiggleSort(self, nums):
+          if nums:
+              for i in xrange(len(nums) - 1):
+                if i % 2 == 0:
+                    if nums[i] > nums[i + 1]:
+                        self.swap(nums, i, i + 1)
+                else:
+                    if nums[i] < nums[i + 1]:
+                        self.swap(nums, i, i + 1)
 
       def swap(self, nums, idx1, idx2):
           nums[idx1], nums[idx2] = nums[idx2], nums[idx1]

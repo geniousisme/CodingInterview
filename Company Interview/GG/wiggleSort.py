@@ -52,8 +52,8 @@ class Solution1(object):
                 i += 1
           return new_nums
 
-class Solution2(object):
-      def wiggle_sort(self, nums):
+class Solution(object):
+      def wiggleSort(self, nums):
           for i in xrange(len(nums) - 1):
             if i % 2 == 0:
                 if nums[i] > nums[i + 1]:
