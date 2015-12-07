@@ -92,40 +92,41 @@ class MorrisSolution(object):
     Space: O(1)
     '''
     def inorderTraversal(self, root):
-        curr = root; res = []; succ = None
+        curr = root; prev = None; res = []
         while curr:
             if curr.left is None:
                 res.append(curr.val)
                 curr = curr.right
             else:
-                succ = curr.left
-                while succ.right and succ.right != curr:
-                    succ = succ.right
-                if succ.right is None:
-                    succ.right = curr
+                prev = curr.left
+                while prev.right and prev.right != curr:
+                    prev = prev.right
+                if prev.right is None:
+                    prev.right = curr
                     curr = curr.left
                 else:
                     res.append(curr.val)
-                    succ.right = None
+                    prev.right = None
                     curr = curr.right
         return res
 
+
     def preorderTraversal(self, root):
-        curr = root; res = []; succ = None # succ means successor, succeed from curr
+        curr = root; res = []; prev = None
         while curr:
             if curr.left is None:
                 res.append(curr.val)
                 curr = curr.right
             else:
-                succ = curr.left
-                while succ.right and succ.right != curr:
-                    succ = succ.right
-                if succ.right is None:
+                prev = curr.left
+                while prev.right and prev.right != curr:
+                    prev = prev.right
+                if prev.right is None:
                     res.append(curr.val)
-                    succ.right = curr
+                    prev.right = curr
                     curr = curr.left
                 else:
-                    succ.right = None
+                    prev.right = None
                     curr = curr.right
         return res
 
