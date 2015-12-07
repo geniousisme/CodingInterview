@@ -6,7 +6,8 @@ class TreeNode(object):
         self.right = None
 
 import collections
-class Solution1(object):
+
+class Solution(object):
     def verticalOrder(self, root): # iterative
         """
         Time:  O(n)
@@ -63,7 +64,6 @@ class Solution(object):
             vertical_order_helper(root, 0)
             return [lookup[i] for i in xrange(self.min_idx, self.max_idx + 1)]
         return res
-
 
 if __name__ == "__main__":
     s = Solution()
