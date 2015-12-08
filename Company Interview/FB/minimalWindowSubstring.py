@@ -1,6 +1,4 @@
 import collections
-
-
 class Solution(object):
     def minWindow(self, S, T):
         t1_dict = collections.defaultdict(int)
