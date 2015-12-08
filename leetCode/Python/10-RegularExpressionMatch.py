@@ -72,9 +72,9 @@ class Solution(object): # recursive
             while len(s) > 0 and (p[0] == s[0] or p[0] == '.'):
                 if self.isMatch(s, p[2:]): # p[1] == '*' case
                     return True
-                # not match, move forward to check
+                # match, move s forward
                 s = s[1:]
-            # common case
+            # not match, move forward to check
             return self.isMatch(s, p[2:])
 
 
