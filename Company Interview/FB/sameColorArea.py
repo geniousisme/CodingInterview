@@ -12,7 +12,7 @@ class Solution(object):
                     max_area = max(self.max_area_helper(matrix, matrix[i][j], i, j), max_area)
         return max_area
 
-    def max_area_helper(self, matrix, color, x, y):
+    def max_area_helper(self, matrix, color, x, y): # bfs
         queue = collections.deque()
         queue.append((x, y))
         area = 0

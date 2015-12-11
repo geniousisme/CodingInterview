@@ -1,4 +1,4 @@
-class Solution(object):
+class Solution1(object):
     '''
     Time:  O(n * 4 ^ n)
     Space: O(n)
@@ -17,16 +17,16 @@ class Solution(object):
                                 '8':['t', 'u', 'v'],
                                 '9':['w', 'x', 'y', 'z']
                                 }
-    def letterCombinations(self, digits):
-        def letter_comb_helper(start, comb):
-            if len(comb) == length:
+    def letterCombinations(self, digits): # recursive way
+        def letter_comb_helper(comb, start):
+            if len(comb) == len(digits):
                 res.append(comb)
                 return
             for letter in self.digit_letter_dict[digits[start]]:
-                letter_comb_helper(start + 1, comb + letter)
-        res = []; length = len(digits)
+                letter_comb_helper(comb + letter, start + 1)
+        res = []
         if digits:
-            letter_comb_helper(0, "")
+            letter_comb_helper("", 0)
         return res
 
 class Solution(object):
@@ -48,17 +48,22 @@ class Solution(object):
                                 '8':['t', 'u', 'v'],
                                 '9':['w', 'x', 'y', 'z']
                                 }
-    def letterCombinations(self, digits):
-        res = []
+    def letterCombinations(self, digits): # iterative way
+        letter_comb_list = []
         if digits:
             for digit in digits:
-                res = self.merge_comb_list(res, self.digit_letter_dict[digit])
-        return res
+                letter_comb_list = self.merge_comb_list(letter_comb_list, self.digit_letter_dict[digit])
+        return letter_comb_list
 
-    def merge_comb_list(self, letter_combs, letters):
-        if not letter_combs:
+    def merge_comb_list(self, letter_comb_list, letters):
+        if not letter_comb_list:
             return letters
-        comb_list = []
+        tmp_comb_list = []
         for letter in letters:
-            comb_list.extend([letter_comb + letter for letter_comb in letter_combs])
-        return comb_list
+            tmp_comb_list += [letter_comb + letter for letter_comb in letter_comb_list]
+        return tmp_comb_list
+
+if __name__ == "__main__":
+    s = Solution()
+    print s.letterCombinations("23")
+
