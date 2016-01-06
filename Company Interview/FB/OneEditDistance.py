@@ -2,6 +2,7 @@ class Solution(object):
     def isOneEditDistance(self, str1, str2):
         if not str1 and not str2:
             return False
+
         if len(str1) > len(str2):
             return self.isOneEditDistance(str2, str1)
 

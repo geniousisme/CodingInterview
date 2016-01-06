@@ -11,12 +11,11 @@ class Solution(object):
                 res.append(perm)
                 return
             for i in xrange(len(left_nums)):
-                if not visited[i]: # notice!
-                    if i > 0 and not visited[i - 1] and left_nums[i] == left_nums[i - 1]: # notice!
-                        continue
-                    visited[i] = True
-                    permute_helper(left_nums, perm + [left_nums[i]])
-                    visited[i] = False
+                if visited[i] or (i > 0 and not visited[i - 1] and left_nums[i] == left_nums[i - 1]): # notice!
+                    continue
+                visited[i] = True
+                permute_helper(left_nums, perm + [left_nums[i]])
+                visited[i] = False
         res = []; length = len(nums); visited = [False] * length
         if nums:
             permute_helper(sorted(nums), [])
