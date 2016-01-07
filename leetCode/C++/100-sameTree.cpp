@@ -1,6 +1,7 @@
 #include <iostream>
 #include <queue>
-// using namespace std;
+
+using namespace std;
 
 // Definition for a binary tree node.
 struct TreeNode {
@@ -10,71 +11,54 @@ struct TreeNode {
      TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
 
-class Solution {
+class Solution1 {
 public:
     bool isSameTree(TreeNode* p, TreeNode* q) {
         if (!p && !q)
             return true;
-        else if (!p || !q)
+        else if (p && q && p->val == q->val)
+            return isSameTree(p->left, q->left) && isSameTree(p->right, q->right);
+        else
             return false;
-        else if (p && q):
-            else if (p->val != q->val)
-                return false;
-            else
-                return isSameTree(p->left, q->left) && isSameTree(p->right, q->right);
     }
 };
-
-struct TreeNode {
-       int val;
-       TreeNode *left;
-       TreeNode *right;
-       TreeNode(int x) : val(x), left(NULL), right(NULL) {}
-};
-
-typedef struct TreeNode treenode;
 
 class Solution {
 public:
-    bool recIsSameTree(TreeNode* p, TreeNode* q) {
-         if (p && q) return (p->val == q->val) && isSameTree(p->left, q->left) && isSameTree(p->right, q->right);
-         else if (!p && !q) return true;
-         else return false; // (!p && q) || (p && !q)
-    }
+    bool isSameTree(TreeNode* p, TreeNode* q) {
+        queue<TreeNode*> pqueue;
+        queue<TreeNode*> qqueue;
 
-    bool isSameTree(TreeNode* p, TreeNode* q){
-         std::queue<TreeNode*> pqueue;
-         std::queue<TreeNode*> qqueue;
+        pqueue.push(p);
+        qqueue.push(q);
 
-         pqueue.push(p);
-         qqueue.push(q);
+        while (!pqueue.empty() && !qqueue.empty()) {
+            TreeNode *p = pqueue.front();
+            TreeNode *q = qqueue.front();
 
-         while (!pqueue.empty() && !qqueue.empty()){
-                TreeNode *tmp_p = pqueue.front();
-                TreeNode *tmp_q = qqueue.front();
+            pqueue.pop();
+            qqueue.pop();
 
-                pqueue.pop();
-                qqueue.pop();
-
-                // if (!tmp_q && !tmp_p) continue;
-                if (tmp_q == nullptr && tmp_p == nullptr) continue;
-                if (tmp_q == nullptr || tmp_p == nullptr) return false;
-                if (tmp_q->val != tmp_p->val) return false;
-                // if (!tmp_q || !tmp_p) return false;
-
-                pqueue.push(tmp_p->left);
-                pqueue.push(tmp_p->right);
-                qqueue.push(tmp_q->left);
-                qqueue.push(tmp_q->right);
-         };
-
-         return pqueue.empty() && qqueue.empty();
+            if (!p && !q) {
+                continue;
+            }
+            else if (p && q && (p->val == q->val)) {
+                pqueue.push(p->left);
+                qqueue.push(q->left);
+                pqueue.push(p->right);
+                qqueue.push(q->right);
+            }
+            else {
+                return false;
+            }
+        }
+        return pqueue.empty() && qqueue.empty();
     }
 };
 
 int main(int argc, char *argv []){
     Solution s;
-    treenode t1 = TreeNode(0);
-    treenode t2 = TreeNode(1);
+    TreeNode t1 = TreeNode(0);
+    TreeNode t2 = TreeNode(1);
     std::cout << s.isSameTree(&t1, &t2) << std::endl;
 };
