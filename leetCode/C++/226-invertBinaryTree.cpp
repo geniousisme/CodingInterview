@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <queue>
+#include <stack>
 
 
 using namespace std;
@@ -15,62 +16,53 @@ struct TreeNode {
 class Solution {
 public:
     TreeNode* invertTree(TreeNode* root) {
-              if (root == nullptr) {
-                  return nullptr;
-              };
-              TreeNode* tmp = root->left;
-              root->left = invertTree(root->right);
-              root->right = invertTree(tmp);
-              return root;
+        if (!root)
+          return root;
+
+        TreeNode* rootleft = root->left;
+        root->left = invertTree(root->right);
+        root->right = invertTree(rootleft);
+
+        return root;
     }
-    TreeNode* myRecInvertTree(TreeNode* root) {
-              if (root == nullptr) {
-                  return nullptr;
-              };
-              TreeNode* tmp = root->left;
-              root->left = root->right;
-              root->right = tmp;
-              invertTree(root->left);
-              invertTree(root->right);
-              return root;
+};
+
+class Solution {
+public:
+    TreeNode* invertTree(TreeNode* root) {
+        if (!root)
+            return root;
+
+        TreeNode* rootleft = root->left;
+        root->left = root->right;
+        root->right = rootleft;
+
+        invertTree(root->left);
+        invertTree(root->right);
+
+        return root;
     }
-    TreeNode* myInvertTree(TreeNode* root) {
-              TreeNode *new_root = root;
-              vector<TreeNode*> stack;
-              while (root || !stack.empty()) {
-                     if (root) {
-                         TreeNode *tmp_root = root->left;
-                         root->left = root->right;
-                         root->right = tmp_root;
-                         stack.push_back(root->left);
-                         stack.push_back(root->right);
-                     };
-                     if (!stack.empty()) {
-                         root = stack.back();
-                         stack.pop_back();
-                     };
-              };
-              return new_root;
-    }
-    TreeNode* iterInvertTree(TreeNode* root) {
-              TreeNode *new_root = root;
-              if (root != nullptr) {
-                  queue<TreeNode*> queue;
-                  queue.push(root);
-                  while (!queue.empty()) {
-                         root = queue.front();
-                         queue.pop();
-                         TreeNode *tmp_root = root->left;
-                         root->left = root->right;
-                         root->right = tmp_root;
-                         if (root->left) {
-                             queue.push(root->left);
-                         };
-                         if (root->right) {
-                             queue.push(root->right);
-                         };                     
-                  };
-              };
-              return new_root;
+};
+
+class Solution {
+public:
+    TreeNode* invertTree(TreeNode* root) { // iteratively invert the tree.
+        TreeNode *new_root = root;
+        if (root) {
+          queue<TreeNode*> queue;
+          queue.push(root);
+          while (!queue.empty()) {
+                 root = queue.front();
+                 queue.pop();
+                 TreeNode *rootleft = root->left;
+                 root->left = root->right;
+                 root->right = rootleft;
+                 if (root->left)
+                     queue.push(root->left);
+                 if (root->right)
+                     queue.push(root->right);
+          };
+        };
+        return new_root;
     }
 };

@@ -39,18 +39,16 @@ public:
             pqueue.pop();
             qqueue.pop();
 
-            if (!p && !q) {
+            if (!p && !q)
                 continue;
-            }
             else if (p && q && (p->val == q->val)) {
                 pqueue.push(p->left);
                 qqueue.push(q->left);
                 pqueue.push(p->right);
                 qqueue.push(q->right);
             }
-            else {
+            else
                 return false;
-            }
         }
         return pqueue.empty() && qqueue.empty();
     }
