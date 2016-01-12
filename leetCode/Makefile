@@ -52,23 +52,23 @@ cpp_dir = C++
 bin_dir = $(cpp_dir)/bin
 out_dir = $(cpp_dir)/out
 
-$(cpp_dir)/%.cpp: Utils.o
+$(cpp_dir)/%.cc: Utils.o
 				$(CC) $(CFLAGS) $(OPTFLAGS) $@ -o $(out_dir)/$(basename $(notdir $@)).o
 		    	$(CC) $(OPTFLAGS) $(out_dir)/$(basename $(notdir $@)).o $(out_dir)/Utils.o -o $(bin_dir)/$(basename $(notdir $@))
 
 # %.o 		: $(cpp_dir)/%.cpp
 # 				$(CC) $(CFLAGS) $(OPTFLAGS) $< -o $(out_dir)/$@
 
-Utils.o		: $(cpp_dir)/include/utils/Utils.cpp 
+Utils.o		: $(cpp_dir)/include/utils/Utils.cc
 				$(CC) $(CFLAGS) $(OPTFLAGS) $< -o $(out_dir)/Utils.o
-			
+
 # clean all the .o and executable files
 clean		:
 			    rm -rf $(out_dir)/*.o $(bin_dir)/*
 
-$(cpp_dir)/%.cpp-run:
+$(cpp_dir)/%.cc-run:
 			  	./$(bin_dir)/$(basename $(notdir $@))
-		
+
 # lib/libtm_usage.a: tm_usage.o
 # 	$(AR) $(ARFLAGS) lib/libtm_usage.a tm_usage.o
 
