@@ -1,4 +1,5 @@
 #include <cmath>
+#include <iostream>
 
 using namespace std;
 
@@ -36,3 +37,11 @@ public:
     }
 };
 
+int main(void) {
+    Solution s;
+    cout << "243: " << s.isPowerOfThree(243) << endl;
+    cout << "6: " << s.isPowerOfThree(6) << endl;
+    cout << "1: " << s.isPowerOfThree(1) << endl;
+    cout << "0: " << s.isPowerOfThree(0) << endl;
+    return 0;
+}
