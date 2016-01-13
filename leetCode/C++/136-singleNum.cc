@@ -4,7 +4,7 @@
 
 using namespace std;
 
-class Solution {
+class Solution1 {
 public:
     int hashSingleNumber(vector<int>& nums) {
         unordered_map<int, bool> hash;
@@ -17,6 +17,10 @@ public:
         };
         return hash.begin()->first;
     }
+};
+
+class Solution {
+public:
     int singleNumber(vector<int>& nums) {
         int ans = 0;
         for (const auto &num: nums)
