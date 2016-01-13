@@ -22,10 +22,8 @@ public:
         // Space: O(1)
         int zero_start_index = 0;
         for (auto it = nums.begin(); it != nums.end(); ++it) {
-            if (*it) {
-                nums[zero_start_index] = *it;
-                zero_start_index++;
-            }
+            if (*it)
+                nums[zero_start_index++] = *it;
         }
         for (int i = zero_start_index; i < nums.size(); ++i)
             nums[i] = 0;
