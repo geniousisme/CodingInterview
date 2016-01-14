@@ -5,7 +5,7 @@ class Solution:
         if num == 0:
            return 0
         return num - 9 * ((num - 1) / 9)
-    
+
     def addDigits(self, num):
         res = 10
         while res > 9:
@@ -13,7 +13,7 @@ class Solution:
               while num > 0:
                     res += num % 10
                     num /= 10
-              num = res              
+              num = res
         return res
 
 

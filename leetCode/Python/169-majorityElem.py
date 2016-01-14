@@ -8,9 +8,7 @@ class Solution:
             freq_dict[n] = freq_dict.get(n, 0) + 1
             if freq_dict[n] >= round(total * 0.5):
                return n
-    
-    # Chris:TODO::find the bit manipulation solution and study it!
-    
+
     def majorityElement(self, nums):
         candidate = None
         count     = 0
