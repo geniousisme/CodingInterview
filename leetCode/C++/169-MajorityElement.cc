@@ -1,23 +1,22 @@
-#include "include/common.h"
+#include <iostream>
+#include <vector>
 
-// Chris:NTR!
+using namespace std;
 
 class Solution {
 public:
     int majorityElement(vector<int>& nums) {
-        int count = 0, candidate = -9999;
-        for (int i = 0; i < nums.size(); i++){
-             if (count == 0) {
-                 candidate = nums[i];
-                 count++;
-             }
-             else if (candidate == nums[i]) {
-                      count++;
-             } 
-             else {
+        int candidate = 0, count = 0;
+        for (const auto &num: nums) {
+            if (count == 0) {
+                count = 1;
+                candidate = num;
+            }
+            else if (candidate == num)
+                count++;
+            else
                 count--;
-             };
-        };
+        }
         return candidate;
     }
 };
