@@ -12,7 +12,7 @@ class Solution:
     def majorityElement(self, nums):
         candidate = None
         count     = 0
-        for n in nums:  
+        for n in nums:
             if count == 0:
                candidate = n
                count     = 1
