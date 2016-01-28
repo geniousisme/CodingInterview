@@ -3,15 +3,10 @@
 class Solution {
 public:
     vector<string> letterCombinations(string digits) {
-                   vector<string> comb;
-                   if (digits.length() > 0) {
-                       init();
-                       dfs(comb, digits, digits.length(), "", 0);
-                   };
-                   return comb;
+        vector<string> res;
     }
 private:
-    unordered_map<char, string> letters;
+    string letters[255];
     void init(void) {
          letters['2'] = "abc";
          letters['3'] = "def";
@@ -23,15 +18,15 @@ private:
          letters['9'] = "wxyz";
          return;
     }
-    void dfs(vector<string>& comb, string digits, int maxlength, string numbers, int idx) {
-         if (numbers.length() == maxlength) {
-             comb.push_back(numbers);
-             return;
-         };
-         for (int i = 0; i < letters[digits[idx]].length(); i++) {
-              dfs(comb, digits, maxlength, numbers + letters[digits[idx]][i], idx + 1);
-         };
+    void letter_comb_helper(char number, string digits, int start, string comb, vector<string> res) {
+        if (comb.length() == digits.length()) {
+            res.push_back(comb);
+            return;
+        }
+        string left = dict[digits[start]];
+
     }
+
 };
 
 int main(void) {

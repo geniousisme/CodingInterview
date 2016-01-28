@@ -1,54 +1,49 @@
-#include "include/common.h"
+/*
+Given an array with n objects colored red,
+white or blue, sort them so that objects of the same color are adjacent,
+with the colors in the order red, white and blue.
+Here, we will use the integers 0, 1, and 2 to represent the color red,
+white, and blue respectively.
+
+Note:
+You are not suppose to use the library's sort function for this problem.
+*/
+
+#include <iostream>
+#include <vector>
+
+using namespace std;
 
 class Solution {
 public:
-    void sortColorsI(vector<int>& nums) {
-         int zeroPtr = 0, i = 0, twoPtr = nums.size() - 1;
-         while (i <= twoPtr) {
-                if (nums[i] == 0) {
-                    swap(nums, i, zeroPtr);
-                    zeroPtr++;
-                    i++;
-                }
-                else if (nums[i] == 2) {
-                         swap(nums, i, twoPtr);
-                         twoPtr--;
-                }
-                else {
-                    i++;
-                };
-         };
-    }
     void sortColors(vector<int>& nums) {
-         int count [] = {0, 0, 0};
-         for (int i = 0; i < nums.size(); i++) {
-              count[nums[i]]++;
-         };
-         for (int i = 0, j = 0; i < 3 && j < nums.size(); i++) {
-              while (count[i] > 0) {
-                     nums[j] = i;
-                     count[i]--;
-                     j++;
-              };
-         };
-    };
-private:
-    int tmp;
-    void swap(vector<int>& nums, int ptr1, int ptr2) {
-         tmp        = nums[ptr1];
-         nums[ptr1] = nums[ptr2];
-         nums[ptr2] = tmp;
-         return;
+        int count[3] = {0};
+        for (const auto &num: nums)
+            ++count[num];
+        int i = 0, count_i = 0;
+        while (i < nums.size()) {
+            while (count[count_i] > 0) {
+                count[count_i] -= 1;
+                nums[i] = count_i;
+                ++i;
+            }
+            count_i += 1;
+        }
     }
 };
 
-int main(void) {
-    Utils utils;
-    Solution s;
-    int iarr [] = {0, 1, 0, 0, 1, 1, 1, 2, 0, 1, 0, 2, 1, 2};
-    vector<int> arr(iarr, iarr + sizeof(iarr) / sizeof(iarr[0]));
-    s.sortColors(arr);
-    utils.printIntVector(arr);
-    return 0;
 
+// class Solution {
+// };
+
+int main(void) {
+    Solution s;
+    // vector<int> nums {0, 1, 0, 0, 1, 1, 1, 2, 0, 1, 0, 2, 1, 2};
+    vector<int> nums {1, 0};
+
+    s.sortColors(nums);
+    for (const auto &num: nums)
+        cout << num << " ";
+    cout << endl;
+    return 0;
 };

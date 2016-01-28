@@ -1,33 +1,47 @@
-#include "include/common.h"
+/*
+
+Given a string containing just the characters
+'(', ')', '{', '}', '[' and ']', determine if the input string is valid.
+The brackets must close in the correct order,
+"()" and "()[]{}" are all valid but "(]" and "([)]" are not.
+
+*/
+
+#include <iostream>
+#include <stack>
+#include <vector>
+
+using namespace std;
 
 class Solution {
 public:
     bool isValid(string s) {
-         vector<char> stack;
-         if (s.length() % 2 == 1) {
-             return false;
-         };
-         stack.push_back(s[0]);
-         for (int i = 1; i < s.length(); i++) {
-              if (s[i] == '(' || s[i] == '[' || s[i] == '{') {
-                  stack.push_back(s[i]);
-              }
-              else {
-                if (s[i] == ')' && stack[stack.size() - 1] != '(') {
-                    return false;
+        stack<char> stk;
+        for (const auto &c: s) {
+            if (c == '[' || c == '(' || c == '{')
+                stk.push(c);
+            else {
+                if (c == ']') {
+                    if (!stk.empty() && stk.top() == '[')
+                        stk.pop();
+                    else
+                        return false;
                 }
-                else if (s[i] == '}' && stack[stack.size() - 1] != '{') {
-                         return false;
+                if (c == ')') {
+                    if (!stk.empty() && stk.top() == '(')
+                        stk.pop();
+                    else
+                        return false;
                 }
-                else if (s[i] == ']' && stack[stack.size() - 1] != '[') {
-                         return false;
+                if (c == '}') {
+                    if (!stk.empty() && stk.top() == '{')
+                        stk.pop();
+                    else
+                        return false;
                 }
-                else {
-                    stack.pop_back();
-                };
-              };
-         };
-         return stack.empty();
+            }
+        }
+        return stk.empty();
     }
 };
 

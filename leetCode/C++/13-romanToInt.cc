@@ -1,19 +1,27 @@
-#include "include/common.h"
+/*
+
+Given a roman numeral, convert it to an integer.
+Input is guaranteed to be within the range from 1 to 3999.
+
+*/
+
+#include <iostream>
 
 class Solution {
 public:
     int romanToInt(string s) {
+        /*
+            Time:  O(n)
+            Space: O(1)
+        */
         int res = 0;
         init();
-        for (int i = 0; i < s.size(); i++) {
-             if (romanTable[s[i + 1]] > romanTable[s[i]]) {
-                 res -= romanTable[s[i]]; 
-             } 
-             else {
+        for (int i = 0; i < s.length(); ++i) {
+             if (romanTable[s[i + 1]] > romanTable[s[i]])
+                 res -= romanTable[s[i]];
+             else
                  res += romanTable[s[i]];
-             }
         };
-        // res += romanTable[s[s.size() - 1]];
         return res;
     }
 private:
@@ -24,13 +32,6 @@ private:
          romanTable['L'] = 50, romanTable['C'] = 100, romanTable['D'] = 500;
          romanTable['M'] = 1000;
     };
-    // unordered_map is slower.
-    // unordered_map<char, int> romanTable =                                  \
-    //           {                                                            \
-    //            {'I', 1},  {'V', 5},   {'X', 10},                           \
-    //            {'L', 50}, {'C', 100}, {'D', 500},                          \
-    //            {'M', 1000}                                                 \
-    //           };
 };
 
 int main(void) {
