@@ -30,6 +30,10 @@ struct TreeNode {
 class Solution1 {
 public:
     vector<int> inorderTraversal(TreeNode* root) {
+        /*
+            Time:  (n)
+            Space: (n)
+        */
         inorder_traverse_helper(root);
         return res;
     }
@@ -47,6 +51,10 @@ private:
 class Solution {
 public:
     vector<int> inorderTraversal(TreeNode* root) {
+        /*
+            Time:  (n)
+            Space: (n)
+        */
         vector<int> res;
         stack<TreeNode*> stk;
         while (!stk.empty() || root) {
