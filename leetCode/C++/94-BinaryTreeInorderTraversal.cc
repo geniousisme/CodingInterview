@@ -1,48 +1,70 @@
+/*
+Given a binary tree,
+return the inorder traversal of its nodes' values.
+
+For example:
+Given binary tree {1,#,2,3},
+   1
+    \
+     2
+    /
+   3
+
+return [1,3,2].
+Note: Recursive solution is trivial, could you do it iteratively?
+*/
+
+#include <iostream>
+#include <stack>
 #include <vector>
 
 using namespace std;
+
 struct TreeNode {
      int val;
      TreeNode *left;
      TreeNode *right;
      TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
- 
-class Solution {
+
+class Solution1 {
 public:
-    vector<int> inorderTraversalI(TreeNode* root) {
-                vector<int> res;
-                recInorderHelper(root, res);
-                return res;
-    }
     vector<int> inorderTraversal(TreeNode* root) {
-                vector<int> res;
-                vector<TreeNode*> stack;
-                while (root || !stack.empty()) {
-                       if (root) {
-                           stack.push_back(root);
-                           root = root->left;
-                       }
-                       else {
-                           root = stack.back();
-                           res.push_back(root->val);
-                           stack.pop_back();
-                           root = root->right;
-                       };
-                };
-                return res;
+        inorder_traverse_helper(root);
+        return res;
     }
 private:
-    void recInorderHelper(TreeNode* root, vector<int>& res){
-         if (root != nullptr){
-            recInorderHelper(root->left, res);
+    vector<int> res;
+    void inorder_traverse_helper(TreeNode* root) {
+        if (root) {
+            inorder_traverse_helper(root->left);
             res.push_back(root->val);
-            recInorderHelper(root->right, res);
-         };
-         return;
+            inorder_traverse_helper(root->right);
+        }
     }
-    // Chris:TODO::NTR!
 };
+
+class Solution {
+public:
+    vector<int> inorderTraversal(TreeNode* root) {
+        vector<int> res;
+        stack<TreeNode*> stk;
+        while (!stk.empty() || root) {
+            if (root) {
+                stk.push(root);
+                root = root->left;
+            }
+            else {
+                TreeNode *top = stk.top();
+                stk.pop();
+                res.push_back(top->val);
+                root = top->right;
+            }
+        }
+        return res;
+    }
+};
+
 int main(void){
     return 0;
 }
