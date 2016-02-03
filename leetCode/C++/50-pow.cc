@@ -1,3 +1,6 @@
+/*
+    Implement pow(x, n).
+*/
 #include <iostream>
 
 using namespace std;
@@ -5,6 +8,10 @@ using namespace std;
 class Solution {
 public:
     double myPow(double x, int n) {
+        /*
+            Time:  O(logn)
+            Space: O(1)
+        */
         bool negative_flag = false;
         if (n < 0) {
             negative_flag = true;
