@@ -1,20 +1,40 @@
-#include "include/common.h"
+/*
+
+Given a string s and a dictionary of words dict,
+determine if s can be segmented into a space-separated sequence of one or more dictionary words.
+
+For example, given
+s = "leetcode",
+dict = ["leet", "code"].
+
+Return true because "leetcode" can be segmented as "leet code".
+
+Subscribe to see which companies asked this question
+
+*/
+
+#include <iostream>
+#include <unordered_set>
+#include <vector>
+
+using namespace std;
 
 class Solution {
 public:
     bool wordBreak(string s, unordered_set<string>& wordDict) {
-      vector<bool> dp(s.length() + 1, false);
-      unordered_set<string>::const_iterator got;
-      dp[0] = true;
-      for (int i = 1; i < s.length() + 1; i++) {
-        for (int j = 0; j < i; j++) {   
-          got = wordDict.find(s.substr(j, i - j));
-          if (dp[j] && got != wordDict.end()) {
-            dp[i] = true;
-          };
-        };
-      };
-      return dp[s.length()];
+        /*
+            Time:  O(n ^ 2)
+            Space: O(n)
+        */
+        vector<bool> dp(s.length() + 1, false);
+        dp[0] = true;
+        for (int i = 1; i <= s.length(); ++i) {
+            for (int j = 0; j < i; ++j) {
+                if (dp[j] && wordDict.find(s.substr(j, i - j)) != wordDict.end())
+                    dp[i] = true;
+            }
+        }
+        return dp[s.length()];
     }
 };
 
