@@ -1,0 +1,31 @@
+0000000000000000000000000000000000000000 63a9c92cb85f1b7479f8d9a8f0e89e1e9886e133 chrishsu <chia-hao.hsu@aiesec.net> 1444445050 -0400	commit (initial): Initial commit
+63a9c92cb85f1b7479f8d9a8f0e89e1e9886e133 63a9c92cb85f1b7479f8d9a8f0e89e1e9886e133 chrishsu <chia-hao.hsu@aiesec.net> 1444445050 -0400	checkout: moving from master to develop
+63a9c92cb85f1b7479f8d9a8f0e89e1e9886e133 63a9c92cb85f1b7479f8d9a8f0e89e1e9886e133 chrishsu <chia-hao.hsu@aiesec.net> 1444445058 -0400	checkout: moving from develop to master
+63a9c92cb85f1b7479f8d9a8f0e89e1e9886e133 8d8a49e49b2c08cf4d4399cff09c0f56f3511d29 chrishsu <chia-hao.hsu@aiesec.net> 1444445164 -0400	commit: pull master
+8d8a49e49b2c08cf4d4399cff09c0f56f3511d29 c767af6240264cd4af41a784ffbad4a4f84f6a8b chrishsu <chia-hao.hsu@aiesec.net> 1444445169 -0400	pull origin master: Merge made by the 'recursive' strategy.
+c767af6240264cd4af41a784ffbad4a4f84f6a8b 46ba96e5e1d72458ac82c4df098fdd1787b01dc3 chrishsu <chia-hao.hsu@aiesec.net> 1444445272 -0400	commit: mv leetcode first
+46ba96e5e1d72458ac82c4df098fdd1787b01dc3 2d0440703dc60a7dd4b081731aa9e57e09c1267e chrishsu <chia-hao.hsu@aiesec.net> 1444445370 -0400	commit: add leetcode folder
+2d0440703dc60a7dd4b081731aa9e57e09c1267e d1a8d3a1da4f1907aab59e9725e8b267382beab3 chrishsu <chia-hao.hsu@aiesec.net> 1444451799 -0400	commit: finish sorting part
+d1a8d3a1da4f1907aab59e9725e8b267382beab3 93870b1d090b0b373dca8a348e845bb0bfd548fc chrishsu <chia-hao.hsu@aiesec.net> 1444509055 -0400	commit: review some problems of leetcodes...
+93870b1d090b0b373dca8a348e845bb0bfd548fc f524fb48ccfd96b0f859d83c79cfa64d129e8891 chrishsu <chia-hao.hsu@aiesec.net> 1444573713 -0400	commit: review some questions for leetocde & lintcode
+f524fb48ccfd96b0f859d83c79cfa64d129e8891 47793eeb1feaa57e0cc85993742f7406deddffe4 chrishsu <chia-hao.hsu@aiesec.net> 1444582645 -0400	commit: finish heapify and trailing zero
+47793eeb1feaa57e0cc85993742f7406deddffe4 afae7312408ca678a2b3721524daf05081fc618d chrishsu <chia-hao.hsu@aiesec.net> 1444737428 -0400	commit: finish iterative version of same tree
+afae7312408ca678a2b3721524daf05081fc618d 959f0007279409f56e6467c9cdb65379b88fb9e8 chrishsu <chia-hao.hsu@aiesec.net> 1444786724 -0400	commit: Finish happy number and same tree review
+959f0007279409f56e6467c9cdb65379b88fb9e8 2807aa7e137792f9916aaf4bc500b45805a01f55 chrishsu <chia-hao.hsu@aiesec.net> 1444882112 -0400	commit: finish new plus one
+2807aa7e137792f9916aaf4bc500b45805a01f55 43017d3548e6020e3b80bb6fbe83ee15bf8e80cd chrishsu <chia-hao.hsu@aiesec.net> 1444968427 -0400	commit: review several leetcode-google intern interview questions
+43017d3548e6020e3b80bb6fbe83ee15bf8e80cd 54e84f2c8b77f5e74caddd6955bd9b202f820af7 chrishsu <chia-hao.hsu@aiesec.net> 1445006156 -0400	commit: finish more google interview possible questions
+54e84f2c8b77f5e74caddd6955bd9b202f820af7 1588c146926331999c489b2f436f788934556bee chrishsu <chia-hao.hsu@aiesec.net> 1445007449 -0400	commit: add one valid parenthese google - version
+1588c146926331999c489b2f436f788934556bee 258cf240c38a7444ea8e9a932cf38cfd6a5af00b chrishsu <chia-hao.hsu@aiesec.net> 1445022473 -0400	commit: finish hard three sum...
+258cf240c38a7444ea8e9a932cf38cfd6a5af00b d402ac62cbbfc8dadc79b848f7ee0be796ea40b8 chrishsu <chia-hao.hsu@aiesec.net> 1445054827 -0400	commit: Finish big number nultiply
+d402ac62cbbfc8dadc79b848f7ee0be796ea40b8 82549eefd113c1a712f52dc32489e4810887e270 chrishsu <chia-hao.hsu@aiesec.net> 1445113067 -0400	commit: solve some dp problems today
+82549eefd113c1a712f52dc32489e4810887e270 7a9a7d6d14446d15bc099b492c49f31cd6ef7e26 chrishsu <chia-hao.hsu@aiesec.net> 1445180340 -0400	commit: finish maximumSubarrayII
+7a9a7d6d14446d15bc099b492c49f31cd6ef7e26 fb8e9c086a283e53ecd863fabe60781fad727098 chrishsu <chia-hao.hsu@aiesec.net> 1445192706 -0400	commit: finish sort letters by case
+fb8e9c086a283e53ecd863fabe60781fad727098 eba2f4891eb47d3e2e0820b7c33c84d6f56998b1 chrishsu <chia-hao.hsu@aiesec.net> 1445217912 -0400	commit: finish few potential interview questions
+eba2f4891eb47d3e2e0820b7c33c84d6f56998b1 9da754ee36f306d4c6499e6a5693c585875ffcce chrishsu <chia-hao.hsu@aiesec.net> 1445726941 -0400	commit: finish several interview questions and VMware hackerrank
+9da754ee36f306d4c6499e6a5693c585875ffcce aaee3c478cfa11bee8b2f3e51e56272bdbc1944d chrishsu <chia-hao.hsu@aiesec.net> 1446299512 -0400	commit: finish a lot of questions
+aaee3c478cfa11bee8b2f3e51e56272bdbc1944d d5fdaa26a60fa4d19eac59f8dd1df1a60e885528 chrishsu <chia-hao.hsu@aiesec.net> 1446321055 -0400	commit: finish several binary search problem review
+d5fdaa26a60fa4d19eac59f8dd1df1a60e885528 8a3bf64d8e2557fdb5624742aba0cfd36d34d016 chrishsu <chia-hao.hsu@aiesec.net> 1446326410 -0400	commit: edit gitignore
+8a3bf64d8e2557fdb5624742aba0cfd36d34d016 5dd69f6ce78c2e34129dd60c71bb0a699f0ec66d chrishsu <chia-hao.hsu@aiesec.net> 1446386971 -0500	commit: finish h-index
+5dd69f6ce78c2e34129dd60c71bb0a699f0ec66d 6500c7e89938570c23441306344164191d3b5162 chrishsu <chia-hao.hsu@aiesec.net> 1446390413 -0500	commit: finish the H-index II
+6500c7e89938570c23441306344164191d3b5162 03a18b8fd92dedcd1ea22a261d52c46d4f340916 chrishsu <chia-hao.hsu@aiesec.net> 1446412662 -0500	commit: finish more interview questions
+03a18b8fd92dedcd1ea22a261d52c46d4f340916 52c550bd3c45b2d369e859f4ebc5019494b5a25c chrishsu <chia-hao.hsu@aiesec.net> 1446670138 -0500	commit: finish ms coding reflection
