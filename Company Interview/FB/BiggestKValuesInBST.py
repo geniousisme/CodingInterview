@@ -4,7 +4,7 @@ class TreeNode(object):
         self.left = None
         self.right = None
 
-class Solution(object):
+class Solution1(object):
     def biggestKthValues(self, root):
         res = []; stack = []
         while root or stack:
@@ -16,6 +16,23 @@ class Solution(object):
                 res.append(top.val)
                 root = top.left
         return res
+
+class Solution(object): # iterative
+    def biggestKthValues(self, root, k):
+        res = count = 0; stack = [];
+        while root or stack:
+            if root:
+                stack.append(root)
+                root = root.right
+            else:
+                top = stack.pop()
+                if count == k - 1:
+                    return top.val
+                else:
+                    count += 1
+                root = top.left
+        return res
+        
 
 if __name__ == "__main__":
     s = Solution()
@@ -32,7 +49,7 @@ if __name__ == "__main__":
     t5.right = t7
     t13.left = t11
     t13.right = t15
-    print s.biggestKthValues(t9)
+    print s.biggestKthValues(t9, 3)
 
 
 
