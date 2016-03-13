@@ -1,0 +1,215 @@
+Longest Common Prefix + 2
+word ladder II ＋ 1
+Add Two Numbers ＋ Add Binary +1
+1. Write a function to add the two binary number strings.
+add('100', '10') -> '110'
+. From 1point 3acres bbs
+2. Follow up, add two number strings with specific base
+add('100', '10', 2) -> '110'. visit 1point3acres.com for more.
+add('100', '9', 10) -> '109'. From 1point 3acres bbs
+
+3. Follow up, sum list number strings with specific base
+add_strs(['9', '3', '2'], 10) -> ’14'
+http://www.1point3acres.com/bbs/thread-94971-1-1.html
+merge interval
+Top 10 query keyword
+假设你拿到Yelp昨天的log, 里边每一行都保存的是用户的搜索记录, 找出Top 10 query keyword.
+我写了两个方法:
+1. 直接用Unix command(他说有bonus): cat -> xargs -> grep -> sort -> uniq -> sort -> head
+2. 写了Java code. 扫描每一行, 放进HashMap<String, Integer>. 然后扔进Heap排序, 之后pop出Top 10.
+一个是判断是否是palindrome
+Anagrams + 3
+刚开始是用排序，hashmap<string, arraylist>写，后来改成了数组计数，又经提示，用了hashmap<hashmap<character, integer>, arraylist>这种写法。. 1point3acres.com/bbs
+Follow up: 怎么用map reduce做？
+常规做法不是用一个HashMap<String, List<String>>去存储anagrams, 这个HashMap里的key是输入word按照字符排序得来的。
+所以在mapper 里面，yield(key, word), 就这么简单。
+input:
+man car kile arc none like
+output：
+man
+car arc
+kile like
+none.
+我是用 HashTable 做的，先 sort，key 為 sort 好的，value 是一個 ArrayList<String>
+如果key和value都要求有序-google 1point3acres
+只排序一次，compatator中如果两个词的变位词不同，则按变位词排序，如果相同，按原词排序。
+再打印的时候判断当前单词和前一个单词的变位词是否相同，如果不同则换行
+如果key要求有序输出
+hashmap，然后对key进行排序。
+random hash map
+Implement一个data structure，insert/delete/return a random element的time complexity都是O(1)
+Return k most frequent words given a search history，答scan之后建hash map，然后丢进heap裡面一个一个pop。接着要我分析time/space complexity，每一步都分析了，最后一步建heap是n，然后pop_heap答是klogn，他说very good.
+设计一个数据结构，要求支持插入，删除和random返回一个元素这三种操作，每种操作的复杂度都要是O(1).
+删除元素后，要使用数组最后一元素交换到被删除的当前位置。并更新hashmap中的最后一元素的位置信息
+followup是如果要支持duplicate数据怎么办（这个想复杂了没写完），求bless. from:
+metrics
+如果给一个hash map (or any other data structure)，裡面存的是工人名字，和他们做的工作list, i.e., key是每一个worker的名字，values是他们take的project名字 (P1, P3, P5 etc) as follows:
+DICT[WORKER_1] = ["P1", "P3", "P10"]-google 1point3acres
+DICT[WORKER_2] = ["P2", "P4", "P5"]
+每次worker take project之后的时间，也会被记录下来
+请想出一个metrics来evaluate which worker is more efficient in finishing projects
+这题目一开始面试官说的相当ambiguous，但应该是考察面试者会不会跟面试官沟通交流
+这题我光问清楚题意和assumption就花了十几分钟，后面implement了两个metrics (不过忘记了)
+pascal triangle ＋ 1
+简简单单一个pascal triangle的implement，之后followup了一下format格式：说如果要居中怎么破。。。多加点space吧. 
+
+random char generator 
+                Random a = new Random();
+                a.nextFloat();
+让你做个random char generator 产生 {'a':0.25, 'b':0.25,'c':0.5} 三个char，数字是出现的概率，给你个东西能uniform distribution generator。开始没搞明白他的uniform distribution generator是能generate什么，就问他你这个generator的产生东西的sample space是什么？a,b,c？他说也没说是也没说不是。我就跟他说那你这问题就是用一个产生a,b,c各1/3概率的generator来做一个概率不一样的generator，是不是？他也没说什么。想了半天，大概按照CC那个通过rand5产生rand7说了一通。他直接没理会，给了个提示，我才意识到这个generator就是个0~1间的随机数rand()
+hashtable. more info on 1point3acres.com
+给如下的数据. 鍥磋鎴戜滑@1point 3 acres
+business 1: [chinese, asian]
+business 2: [american, burger]
+business 3: [sushi, japan].
+第一个是商家代码，第二个是该商家属于的种类. 
+要求输出一个表格，找到每个种类对应了哪些商家。比如
+Chinese: b1, b3, b5
+Sushi: b7, b1
+解法，用hashtable<String, ArrayList<Integer>>. 涓
+Intersection of Two Linked Lists
+最后一道算法题是有两个linked list在某个node交汇。最开始二了给了个O(N^2)的算法，还把这道题跟原来做的另外一道题搞混了。最在两个hint之后终于明白过来先扫长度然后把长的那根list剪掉，然后两个指针同时扫就好了。
+reverse string ＋ 1. 鐣欏鐢宠璁哄潧-涓€浜╀笁鍒嗗湴
+coding题是reverse words in a string。不难，我先写了一个iterative的方法，然后叫我用recursive的方法再写一遍
+如果String 是mutable怎么办？我平时用java用惯了，思维太定式了，后来她提示我说 two pointer，往中间走直接交换就行，我感觉我好怂啊...暴露我水平的一问
+然后用这个思想完成，Reverse words 这是reverse 每一个word，但不reverse sequence. 
+iterator
+说有个一个docment collection，d0,d1,d2,d3....和一个iterator，iterator的构造器接收一个word：
+iterator(word):
+    next(): return (docId, pos).
+    hasnext()
+    skip(docId, pos)
+iterator的next返回的是下一个含有该word的doc id和该word在这个doc里的位置。skip让iterator送指定的doc的指定位置接着iterate。
+用这个iterate返回所有含有“happy hour”的doc id和这个phrase在这些doc里出现的位置。
+恰巧最近上的information retrieval的课上，讲到了boolean query的算法，基本上思路就是给happy和hour这两个词分别建立一个iterator，然后把含有这两个词的doc看作两个list，首先要找到同时含有这两个词的doc，然后再判断这两个词是不是一前一后正好形成这个phrase。我最后写出了还算正确的解决方案。不然估计又死翘翘了。
+扫雷
+扫雷游戏。一个n*m棋盘，要我随机放置k个地雷，然后将棋盘根据扫雷规则把棋盘用数字填满。最后问了时间复杂度
+每个雷的上下左右都加1. O（k）
+链表－飞机路线
+coding题目是一道类似set difference的题目，大意是这样的，给你一些机票的信息，比如[shanghai -> beijing], [tianjin -> dalian], [beijing -> tianjin]，[]表示[出发站->终点站]，要求你只traverse这个directory一遍把所有的线路连起来。思路很简单，因为初始站和终点站只在dictory中出现一次，我们可以很容易找出他们，然后利用map把线路恢复出来
+根据hashmap第一个节点，练成一条链，每链接一个node，就删除一个node。再对dic中剩下的元素重复此过程。指导集合为空。
+最慢排序
+第一想到了O（n2），被告知太快了。又说了n的立方，他说这还是多项式时间内。突然明白了是要非多项式时间。想出了类似于permutation的解法，最慢时间大约是O(n!*n2)，面试官说不错，还有没有更慢的。于是又想出了前两个，前三个，前四个……直到前n-1个，前n个都用这种方法的变态解法，面试官说行了。
+inverted index
+第一题是给你一个list of strings, 每个strings是一个句子包含lots of terms. 输出每个terms所出现的index of strings
+# documents = ['I love to eat burger', 'burger is good to eat'......]
+# 'burger' = [0, 1, ...]
+# 'eat' = [0, 1, ...]
+# 'love = [0, ...]
+hashmap解, T: O(M*N), M是length of documents, N是number of terms in doc. From 1point 3acres bbs
+Follow up, 如何判断两个term是similar?
+概率. visit 1point3acres.com for more.
+经提示后回答比较两个term出现的概率: metric = p(a, b ) / p(a) * p(b)
+基本上就是conditional probability ：在B条件下A的概率
+联合概率表示两个事件共同发生的概率。A与B的联合概率表示为P(A \cap B)或者P(A, B)。
+边缘概率是某个事件发生的概率。A的边缘概率表示为P（A），B的边缘概率表示为P（B）。
+P(A|B) = |A∩B|/|B|
+如果两个都是独立的话 metric = 1, 互斥 metric = 0, otherwise可以测相似程度
+估计是这部份答不好 挂了.
+猜数字
+猜一个数在1-N之间，怎么猜？还现场玩了一回，呵呵~~
+如果不知道N怎么猜？. more info on 1point3acres.com
+Min Stack. 1point 3acres 璁哄潧
+min stack问题，拓展stack实现min（）这个函数的功能
+Regular Expression Matching
+/////////////////////////////////////////////
+数学
+T(n) = 4*T(n/2) + (n^2) * lg(n) 这个递归式能否用master 
+method求解，如果可以，如何求解？
+n ^ logb A = n ^ 2
+f(n) = n^2 * lg n
+af(n/b) = 4* (n/2)^2 * lg(n/2) = n^2 * (lgn - 1) = n^2 * lgn - n^2
+cf(n) = c* n^2 * lgn, c < 1
+if(af < cf)
+n^2*lgn - n^2 < c*n^2*lgn
+        f*n^2*lgn < n^2
+        f*lgn < 1. visit 1point3acres.com for more.
+since n is really large, so af > cf, so master method can not be used 
+
+我怎么觉得那个不可以用主方法呢？f(n) / n^(logbA) = lgn, 不是线性的大于
+我觉得是不能的，任给∝大于0，n∧∝都大于lgn
+我找了下introduction to algorithms, 里面有道例题分析了这种情况，是不可以用主方法的
+网络
+DNS
+dns怎么工作的
+DNS怎么工作，如何用DNS做Load balancing以及location定位
+http post get区别
+post get区别 怎么保证post请求不被中间人篡改
+TCP/UDP
+TCP UDP 区别，
+cache
+什么是cache这类 
+Cache怎么工作，Page Rendering
+
+然后他还问了下，HTML，CSS，Javascript我们可以caching哪几个？
+（我说CSS吧，因为不常变动）
+Some websites use highly volatile, oft-changing CSS and JavaScript files. In the case of these files, it's important that the developer prevent browsers from caching them.?.1point3acres缃�
+如何判断缓存中的网页是否过期，哪些文件需要存入缓存
+Expires策略：Web服务器响应消息头字段，在响应http请求时告诉浏览器在过期时间前浏览器可以直接从浏览器缓存取数据
+Cache-control：
+http协议头Cache-Control web服务器返回的Cache-Control头的值为max-age=300，即5分钟。
+输入url. visit 1point3acres.com for more.
+的在浏览器里输入一个链接后发生了什么的问题
+输入URL会怎么样，我把知道的全部说了，比如说，.
+网站反应慢. more info on 1point3acres.com
+我有个网页，用户反映每次打开加载都很慢，说3个原因为什么？ 
+（我也不是那么清楚。。。就想起什么说什么，说了bandwidth，说了database优化不够，数据量大很多join，还说了网页做的太次，全是image，可以用caching解决）
+网站变慢，可能有什么因素？ load balancing有问题，图片太多，数据库操作. 1point3acres.com/bbs
+太频繁，服务器自身的硬件能力有问题etc.鐣欏璁哄潧-涓€浜�-涓夊垎鍦�
+说yelp有个页面访问量大，比较卡，怎么解决。如果不是数据库的问题，怎么解决， 加了cache还慢怎么解决
+如果美国用户快法国用户慢怎么解决，如果在欧洲安了服务器还慢怎么解决。。。安了服务器怎么判断是美国还是法国的用户请求
+XSS
+什么是XSS？ （这我就不知道了。。。）. more info on 1point3acres.com
+OS
+1.举例说明deadlock。我就说了下CC上面那个拿筷子和放筷子的例子，又说了下不同thread访问一个文件。后来引申问有什么么检测的方法。我說了可以 timeout 和用其他的service建graph遍历来检测，后来又问了为什么dfs比bfs检测graph的环好。
+数据库
+index
+数据库index什么原理，B树和hash table优缺点 ( 这里出糗了，他最后问hash table的缺点，... range... blabla没听懂，他直接pass了)，我说了b树查询速度相对慢是logN，没说出其他有营养的东西。嘴贱意淫说了hash table修改的时间复杂度高，貌似说错了 囧。 望大牛指点
+B tree 的search time 是logN, 但是好處是range search的時候快。Hash table的edit, search time都是O(1), 缺點是range search的時候非常慢。
+SQL index以及如何进一步优化，有什么tradeoff
+Database: Left join and Inner Join
+database join的一些知识
+数据库慢
+如果一个Database的查询速度很慢，如何改进。如果denormalization之后还是不给力，怎么办？. 1point 3acres 璁哄潧
+SQL里面如何优化query的速度，query里的aggregator函数的用法
+数据库查询慢为啥，怎么解决。Index，只能想到这个。
+什么是SQL injection？
+（上过Security，大概有点印象）
+JAVA
+用过Python嘛? Python vs C++的不同 (dynamic vs compiled language)-google 1point3acres
+c++和java区别 （本人主要语言C++）
+java GC 工作机制.
+What do you like about Java. 
+How can Java improve.
+Primitive types don't inherit from Object
+How does Java compile code
+transform source file into byte code. The bytecode is platform independent, because it's targeted at Java Virtual Machine.
+jvm -> machine code
+You invoke javac pointing to your source code file. The internal reader (or tokenizer) of javac reads your file and builds an actual AST out of it. All syntax errors come from this stage.
+
+The javac hasn't finished it job yet. When it has the AST(Abstract Syntax Tree) the true compilation can begin. It's using visitor pattern to traverse AST and resolves external dependencies to add meaning (semantics) to the code. Finished product is saved as a .class file containing bytecode.
+Now it's time to run the thing. You invoke java with the name of .classfile. Now the JVM starts again, but to interpret Your code. The JVM may, or may not compile Your abstract bytecode into native assembly. The Sun's HotSpot compiler in conjunction with Just In Time compilation may do so if needed. The running code is constantly being profiled by the JVM and recompiled to native code if certain rules are met. Most commonly the hot code is the first to compile natively.
+
+How to print "Hello World" in Java, 就大概问下Java基本操作吧。
+Java: pass by reference or pass by value? what does pass by value mean?
+像C++ vector list等等数据结构查找删除 size()的时间复杂度.
+比如interface vs abstract class. 为什么用interface. 为什么用abstract class.
+
+Data structure
+hashtable的原理
+HashMap的操作 复杂度
+Android-google 1point3acres
+比如MVC是什么，大概说说MVC三个东西都是干什么的
+The MVC pattern is essentially this:
+Model: What to display
+View: How it’s displayed
+Controller: Formatting the model for display and handling events like user input,such as activity
+测试
+unit test和integrity test的区别
+单元测试（unit testing），是指对软件中的最小可测试单元进行检查和验证。对于单元测试中单元的含义，一般来说，要根据实际情况去判定其具体含义，如C语言中单元指一个函数，Java里单元指一个类，图形化的软件中可以指一个窗口或一个菜单等。总的来说，单元就是人为规定的最小的被测功能模块
+整合测试又称组装测试，即对程序模块采用一次性或增殖方式组装起来，对系统的接口进行正确性检验的测试工作。整合测试一般在单元测试之后、系统测试之前进行。实践表明，有时模块虽然可以单独工作，但是并不能保证组装起来也可以同时工作。
+individual software modules are combined and tested as a group。It occurs after unit testing and before validation testing. Integration testing takes as its input modules that have been unit tested, groups them in larger aggregates, applies tests defined in an integration test plan to those aggregates, and delivers as its output the integrated system ready for system testing.[1]. 涓€浜�-涓夊垎-鍦帮紝鐙鍙戝竷
+Behaviroal questions
+1. 介绍你自己.
+2. 为什么选我们公司?
+3. 公司网站需要什么改进的?
