@@ -56,6 +56,7 @@ class Solution1(object):
 class Solution(object):
     def __init__(self):
         self.length = 0
+
     def subsetsWithDup(self, nums):
         # write your code here
         res = []

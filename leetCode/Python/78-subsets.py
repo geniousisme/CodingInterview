@@ -36,7 +36,8 @@ class Solution:
 
     def DFS(self, comb, start, nums, depth): # optimized, use index but not whole list
         self.res.append(list(comb))
-        if depth == self.length:  return
+        if depth == self.length: 
+            return
         for i in xrange(start, self.length):
             comb.append(nums[i])
             self.DFS(comb, i + 1, nums, depth + 1)

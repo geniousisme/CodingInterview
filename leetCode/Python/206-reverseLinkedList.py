@@ -19,23 +19,24 @@ def print_llst(head):
 Time:  O(n)
 Space: O(1)
 '''
-class Solution1: # iterative
-    def reverseList(self, head):
-        p = head
+class Solution(object): # iterative
+    def reverse(self, head):
         start = None
-        while p:
-            next = p.next
-            p.next = start
-            start = p
-            p = next
-        return start
+        return self.reverse_helper(head, start) 
+
+    def reverse_helper(self, head, start):
+        if head is None:
+            return start
+        next = head.next
+        head.next = start
+        return self.reverse_helper(next, head)
 
 '''
 Time:  O(n)
 Space: O(1)
 '''
 class Solution(object): # recursive
-    def reverse(self, head):
+    def reverseList(self, head):
         return self.reverse_helper(head, None)
 
     def reverse_helper(self, head, start):

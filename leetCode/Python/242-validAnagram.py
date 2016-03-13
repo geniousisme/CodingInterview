@@ -1,19 +1,23 @@
-class Solution1:
-    # @param {string} s
-    # @param {string} t
-    # @return {boolean}
+# Given two strings s and t, write a function 
+# to determine if t is an anagram of s.
+
+# For example,
+# s = "anagram", t = "nagaram", return true.
+# s = "rat", t = "car", return false.
+
+# Note:
+# You may assume the string contains only lowercase alphabets.
+
+
+class Solution(object):
     def isAnagram(self, s, t):
         '''
         Time:  O(nlogn)
         Space: O(1)
         '''
-        slst = list(s)
-        tlst = list(t)
-        slst = sorted(slst)
-        tlst = sorted(tlst)
-        return slst == tlst
+        return sorted(s) == sorted(t)
 
-class Solution:
+class Solution(object):
     def isAnagram(self, s, t):
         '''
         Time:  O(n)
@@ -21,12 +25,13 @@ class Solution:
         '''
         if len(s) != len(t):
             return False
-        sdict = {}; tdict = {}
-        for str in s:
-            sdict[str] = sdict.get(str, 0) + 1
-        for str in t:
-            tdict[str] = tdict.get(str, 0) + 1
-        for s in sdict:
-            if sdict[s] != tdict.get(s):
+        tdict = {}; sdict = {}
+        for char in s:
+            sdict[char] = sdict.get(char, 0) + 1
+        for char in t:
+            tdict[char] = tdict.get(char, 0) + 1
+        for char in s:
+            if sdict.get(char) != tdict.get(char):
                 return False
         return True
+
