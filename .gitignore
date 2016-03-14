@@ -1,12 +1,10 @@
+.DS_Store
 *.pyc
 *.swp
 *.pdf
-.DS_Store
 *.gslides
 *.txt
 *.png
-*.doc
-*.docx
-*.ppt
-*.pptx
+*.doc[x]
+*.ppt[x]
 Company\ Interview/Company\ leetcode\ list/*
