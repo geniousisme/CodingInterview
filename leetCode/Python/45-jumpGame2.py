@@ -19,26 +19,10 @@ Subscribe to see which companies asked this question
 '''
 
 class Solution(object):
-    # @param {integer[]} nums
-    # @return {boolean}
-    def jump(self, nums):
-        length = len(nums)
-        last = curr = step_num = 0
-        for i in xrange(length):
-            print 'i:', i
-            print 'last:', last
-            print 'curr:', curr
-            if i > last:
-               print '###'
-               last = curr
-               print 'last:', last
-               print '###'
-               step_num += 1
-            if i + nums[i] > curr:
-               curr = i + nums[i]
-        return step_num
-
-class Solution(object):
+    '''
+    Time:  O(n)
+    Space: O(1)
+    '''
     def jump(self, nums):
         length = len(nums)
         last_idx = curr_idx = step_count = 0
