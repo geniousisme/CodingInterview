@@ -18,8 +18,10 @@
 
 
 class Solution1(object):
-    # @param {integer[]} nums
-    # @return {integer[]}
+    '''
+    Time:  O(n)
+    Space: O(n)
+    '''
     def productExceptSelf(self, nums):
         length = len(nums)
         res    = [1] * length
@@ -32,24 +34,6 @@ class Solution1(object):
             right_product *= nums[i]
 
         return res
-
-class Solution(object):
-    # @param {integer[]} nums
-    # @return {integer[]}
-    def productExceptSelf(self, nums):
-        if not nums:
-            return []
-
-        left_product = [1 for _ in xrange(len(nums))]
-        for i in xrange(1, len(nums)):
-            left_product[i] = left_product[i - 1] * nums[i - 1]
-
-        right_product = 1
-        for i in xrange(len(nums) - 2, -1, -1):
-            right_product *= nums[i + 1]
-            left_product[i] = left_product[i] * right_product
-
-        return left_product
 
 class Solution(object):
     '''
@@ -68,12 +52,9 @@ class Solution(object):
         right_product = 1
         for i in xrange(len(nums) - 1, 0, -1):
             right_product *= nums[i]
-            
+            left_products[i - 1] *= right_product
 
-
-
-
-    
+        return left_products
 
 if __name__ == '__main__':
    s = Solution()
