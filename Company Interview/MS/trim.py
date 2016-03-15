@@ -1,3 +1,6 @@
+
+
+
 class Solution(object):
 	def trim(self, input_str):
 		char_list = list(input_str)
@@ -24,6 +27,6 @@ if __name__ == "__main__":
 	s = Solution()
 	test_str = '   a    bbb b cc c     c d       ddd d dd     d       e'
 	print s.trim(test_str)
-	print s.trim()
+	print s.trim(test_str) == te
 
 
