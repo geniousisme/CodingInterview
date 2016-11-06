@@ -24,7 +24,7 @@ class Solution1:
                self.dfs(nums, perm + [nums[i]], perm_len + 1, visited, res)
                visited[i] = False
 
-class Solution(object):
+class Solution2(object):
     # @param {integer[]} nums
     # @return {integer[][]}
     def __init__(self):
@@ -52,6 +52,21 @@ class Solution(object):
                 visited[i] = True
                 self.perm_helper(nums, perm + [nums[i]], visited)
                 visited[i] = False
+
+class Solution(object):
+    def permuteUnique(self, nums):
+        res = []
+        if nums:
+            self.perm_helper(res, [], nums, 0)
+        return res
+
+    def perm_helper(self, res, perm, nums, index):
+        if len(perm) == len(nums) and perm not in res:
+          res.append(perm)
+        else
+          
+    
+
 
 if __name__ == '__main__':
    s = Solution()

@@ -55,10 +55,13 @@ class Solution2(object):
             prev, prev_prev = curr, prev
         return prev
 
+
+
+
 if __name__ == "__main__":
     s = Solution2()
-    print s.numDecodings("209")
-    print s.numDecodings("210")
-    print s.numDecodings("240")
+    print s.numDecodings("123")
+    # print s.numDecodings("210")
+    # print s.numDecodings("240")
 
 

@@ -3,6 +3,8 @@
 *.swp
 *.pdf
 *.gslides
+*.xlsx
+*.pages
 *.txt
 *.png
 *.doc[x]
