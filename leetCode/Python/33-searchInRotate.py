@@ -76,5 +76,6 @@ if __name__ == '__main__':
    s = Solution()
    print s.search([4, 5, 5, 6, 7, 0, 1, 2, 3, 3, 4], 5)
    print s.search([3, 1], 0)
+   print s.search([1, 2, 3, 4, 5, 6, 7, 8], 5)
    
 
