@@ -20,6 +20,6 @@ class Solution:
             self.paths.append(path)
             return
         if root.left:
-            self.binary_tree_path_finder(path + str(path.left.val), root.left)
+            self.binary_tree_path_finder(path + '->' + str(path.left.val), root.left)
         if root.right:
-            self.binary_tree_path_finder(path + str(path.right.val), root.right)
+            self.binary_tree_path_finder(path + '->' + str(path.right.val), root.right)

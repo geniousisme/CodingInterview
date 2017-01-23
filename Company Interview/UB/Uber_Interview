@@ -1,0 +1,210 @@
+刚刚面的店面需要在codepair里面run test case的
+题目大概是这样.
+先给你一个字典
+["this", "hi", "his", "is", "word"]
+然后再给一字串例如
+"thisisaword"
+要找到当中在字典里面出现过的substring
+所以应该要返回
+["this", "hi", "his", "is", "is", "word"]
+注意"is"被返回了两次因为确实出现了两次
+
+面试的时候一时脑袋空白
+虽然觉得好像有些可以用DP或是trie的可能
+但是一时半刻没有想到很好的解法
+就直接暴力解
+
+我用了一个HashSet存了字典里面的字
+然后暴力搜了所有的substring去看有没有出现在set里面.
+加上的优化是在暴力搜索的时候考虑字典里面的最长字串长度
+就可以不用去考虑过长的字串的情形
+复杂度是O(N^2).
+
+面试官好像很喜欢我的解法. from: 1point3acres.com/bbs 
+大家讨论看看还有没有什么更好的解法吗
+
+==================================================================================================================
+
+首先说下楼主是妹子，觉得整个过程似乎略带性别光环，没有想象中难，各位大神笑笑就好哈。
+
+电面：
+
+一个印度小哥，口音很重，楼主的印度语听力真的是特别差，全程交流不是很顺。。好在小哥人好有耐心。。给小哥点赞。题目是LC17原题。原到我有些尴尬，于是装作思考了一番然后顺利写完了代码。小哥问complexity，我一紧张答错了，小哥让我解释，我解释不通于是发现答错了赶紧纠正，小哥似乎没有很放在心上。但是提醒大家complexity还是尽量不要答错，会显得基础不好。然后小哥问怎么改进，我没什么想法于是说可能可以用memorization?小哥说接近了。后来告诉我可以两位两位的看，我心想这好像也没变好啊，毕竟dfs每一层的选择变多了。但是嘴上还是说Wow this is clever，小哥听了似乎很开心，让我写代码，这会儿已经没啥时间了，随便写了两行小哥就说可以了可以了，问问题吧。
+后来挂了电话才发觉小哥这样的好处在于可以减少dfs的深度，防止stackoverflow.于是赶紧又在LinkedIn上私信小哥说了说这个想法，顺便表达感谢。个人觉得这样的私信说不定还真有点小作用。会把介于accept/reject之间的decision转化成一个accept.
+
+Onsite:
+
+一共五轮，听起来还是蛮累的，真面了觉得还好。一直听闻Uber很爱考System design，所以面前看了超级多，结果完全没考，sigh…这里给大家推荐下BitTiger里面的那个硅谷之路，里面讲了挺多真实案例，受益还是蛮多的。
+
+第一轮，bar raiser聊天。一个亚洲男士，表情比较严肃，看得我很紧张，于是我告诉他我很紧张，然后他就笑了。有时候觉得紧张就不妨告诉面试官，他就会变得比较和蔼。这一轮先是自我介绍，然后聊一个自己做过的项目，我讲的是假期实习的项目。因为面试前一天复习过项目细节，所以记得很牢，在白板上画了整体architecture，每一部分讲的也比较清楚。讲完面试官似乎很满意，脸上洋溢着笑容。我暗喜这轮应该稳了。随便聊聊就结束了。
+
+第二轮coding。一个白人大哥，一进来就说我就考你一道题，写完了咱们就可以闲聊了。我说那你不要出太难。。他露了出蜜汁微笑。题目是给你一堆域名，其中一些是另一些的parent，比如.com是.youku.com的parent，然后.youku.com是.service.youku.com的parent这样，然后再给你一个网址，让你在那堆域名中找到这个网址的parent里面最长的一个，然后再往前退一个返回。语言有点不好描述，举个栗子：
+. 
+Domains:[
+“.com”,
+“.cn”
+“.service.com”
+“.net”
+“.youku.net”
+]
+url: “yeah.hello.youku.net”
+
+这里.net和.youku.net都是这个url的parent,其中最长的是.youku.net，再往前退一个是hello,所以返回“hello.youku.net”
+
+刚听到有点懵比，后来想了想有点像trie，从后往前看就是了，问了问面试官这个方向对不对，面试官说why not。于是开始写代码，在trie里面每一个node里面放一个HashMap<String,Node> 就行。其他的部分其实和LC里面implement trie其实挺像的。所以比较顺利的写完了。 后面就是聊天了，聊Uber的各种technology什么的，之前准备system design 虽然后来没考，但是聊天中会显得对他家技术很了解，应该也有加分的~大哥还鼓励我说你要是后面几轮都像这一轮一样肯定没问题的，啊啊啊心里好温暖，感觉已经暗示我这轮过了，happy!
+
+第三轮来了一个像是中东地区的大叔，眼睛real大，大到呆滞的那种，应该是智商太高的原因。。这轮原名叫problem solving，应该是system design那种的，但是面试官估计看我是new grad就临时换成了coding (其实我内心是拒绝的，不想连着coding T^T)。 题目叫csv parser，但实际上就是给一个string, 根据换行和逗号隔开，但是双引号中的东西不能隔开，还要注意引号中的引号，最后返回List<List<String>>
+
+栗子： Input: “a,b\nc,d,\”e,f\ng”\n,h,i”
+            Output:[[a,b],[c,d,”e,f\ng”],[h,i]]
+
+其实不难，但是这种题楼主总是漏corner case(智力不够老有case想不到) 所以一直在debug。好在大叔似乎也在忙自己的工作，没在看我debug，不然估计很嫌弃。。最后总算是把bug都fix了。我说啊我这个代码看着不怎么优雅啊，大叔说没有啊挺好的。说实话这轮感觉一般，不知道大叔最后给了怎样的feedback，可能他大人不记小人过吧。
+. more info on 1point3acres.com
+然后午饭，两个HR带着一堆面试者边吃边聊。吃的是比较普通的美餐，不过有个素三明治辣辣的，还有一个红烧鱼排，这两个都很好吃！去面试的同学可以去找一下哈哈
+
+饭后第四轮还是coding，一个大概是韩国的小哥。小哥很爱聊天，感觉聊了好久，我心想这一轮是coding不能这么聊下去。于是故意词穷聊天就结束了。（感觉面试时候把握时间也很重要，看到过聊天聊太久最后代码没写完被挂的案例。。）然后出题，说的挺不清楚的，大致意思就是说有一堆data，你要根据key实现set和find的功能，我弱弱地问这和一个普通的hashmap有啥区别吗。。小哥说我们这个是有capacity限制的，后面还要接一个大的database，我们假设有个api，可以和那个大的database交流。我说所以这就是个cache咯？小哥说可以这么认为。。。哎提示大家面试的时候面试官经常爱把故事讲的让你摸不着头脑，一定要不断clarify尽快找到题目的本质，不要被故事绕晕了。所以这题其实就是写个cache，楼主唯一练过的就是LRU，所以就写了这个。不同之处就是要加上和database沟通的部分，比如说set的时候既要set cache也要set database. Find的时候先在cache里找，如果没有再去database里找，并且插入cache中。其他就和传统LRU没啥太大区别了。LRU这个题相当经典，我几乎是、见一遍写一遍，所以最后虽然时间蛮紧的但是还是写完了。问小哥说行不，小哥说可以是可以，但其实还可以有很多改善，比如要thread-safe啊啥啥的。。我也不知道他满不满意，但是也只能这样啦毕竟没时间了。
+
+最后一轮和一个manager闲聊，算是culture fit。那个manager和我不在一个楼，所以开的视频，他家视频的那个摄像口安在墙上很高的地方，所以全程做仰视状，感觉挺滑稽的，估计他也觉得挺滑稽的，全程都哈哈哈的笑。。。先是介绍他自己，他之前在G家干过10年，最近刚跳过来，觉得这边更加一颗赛艇。然后介绍他在的组，说Uber现在计划做一些狂拽酷炫的事情，大家都很有干劲。然后问我有没有和别人在工作中有过矛盾？怎么解决的？假期实习的组里最喜欢谁最不喜欢谁(多么尴尬的问题= =)？实习中最困难的部分是啥？怎么解决的？然后他似乎很喜欢我假期用的technologies，连连说我看了你的简历那些都是我们需要的blabla(楼主假期在亚麻实习，用了很多AWS的东西，可能他们是喜欢这个？) 反正这场聊天挺轻松的，而且manager笑容满面莫名喜感所以都不知道咋回事就结束了。。。
+
+==================================================================================================================
+
+相当于第一轮面试，题不难，但也是design
+类似于LC 362/ 359, 先做完然后followup 用户数非常大的情况，要求当场写好代码，测试他给的case
+
+==================================================================================================================
+
+先问了hashtable的underlining data structur是什么，然后又问了collision该怎么办。我说了chaining和另外那个找下一个empty key的，比较了一下优缺点。
+
+然后出了题是一个世界纪录保持者的system。给了（世界纪录的名字，保持到的年份，保持者名字）存到一个自己的设计的data structure里，然后在给（世界纪录的名字，年份）的时候，可以return保持者名字。值得注意的是这个年份是任意年份，所以要找到适合的interval。
+
+我先说了用世界纪录的名字当key，把剩下的两个信息存在一个以年份排序的priority queue里。分析了一下发现lookup可以再optimize一下（priority queue的话只能linear search了）。于是我就说把priority queue换成min heap。我好久没碰min heap，有点不大熟悉，好像complexity分析的时候说的不大对。然后又让写了一下在min heap里找人名的code，感觉写的也蛮晕的....就结束了
+
+==================================================================================================================
+
+之前第一轮on campus的面经在这里。自己以为肯定挂了，把uber都差点从手机上删了，没想到过了两天说要安排二面。面试官先上来比较按流程的自我介绍和问project，project这块聊的还蛮详细的
+然后就问问题啦，问的是dropbox经典的那道log request rate的题。就是让写一个function来决定一个IP address在过去一秒里是否made more than 100 requests
+我就傻白甜地先说了比较intuitive的queue的方法，在需要optimize的时候又写了circular buffer的方法
+然后why uber? 之前学校的大神指点我准备下work culture有关的，我做了一下research觉得蛮管用的，在这里跪谢大神！
+最后让我问问题，随便问了几个关于他工作的问题，就愉快地结束了面试
+
+周二上午面的，周四下午收到recruiter邮件说要约个电话谈下feedback。当时心里一沉，感觉听口气是没戏了。但没想到周五打电话的时候又说过了。:D 
+
+总结下感觉这两轮还蛮水的，不过要不水我也肯定过不了....越面试越觉得这个东西pure luck的成分在里面好多
+
+
+==================================================================================================================
+
+面试官是华人，感觉很有激情，先听他介绍自己的team15分钟。
+第一题：
+leetcode 329, longest increasing path in matrix 的变种， 要求输出path，写了一个非optimal版本的DFS（没有memorization)。
+
+第二题：
+Caculate PI的值，只要思路不要代码，没做出来。后来网上看了看应该用monte carlo method: http://www.stealthcopter.com/blo ... ing-random-numbers/
+
+
+==================================================================================================================
+
+现在有一堆国家1...n 他们要打一场世界大战 世界大战的条件如下
+1. 所有的国家都要加入世界大战
+2. 世界大战只有两方的敌对势力Group A和Group B
+3. Group A或者Group B之内不能互相战争
+现在给一个国家之间的战争列表 e.g.
+1 -> 2,3,4
+（意味着1同时要和2,3,4打仗）. 1point3acres.com/bbs
+（面试官挖的坑，很后来才问出来，注意，这同时也意味着2要和1打仗,3要和1打仗,4要和1打仗）
+2 -> 1,5
+6 -> 7
+etc...
+问可不可能会发生世界大战 返回true or false
+
+死活想不出是graph的bfs graph都自己在白板上画出来了 bfs都自己过出来了一遍就是想不到bfs 45分钟基本都在自我纠结linear扫过这个列表的时候 6到底应该assign group A还是group B
+最后面试官看不下去了 随便给了一道bst inorder traversal 再随便给了道graph的bfs 然后面试官问再看看这道题...
+不求人品了 move on
+
+==================================================================================================================
+
+Round 1:貌似是武汉人？
+问了很多简历的问题，包括decision tree, random forest的原理，用什么实现的，画了一下decision tree模型
+Question: given 1000 machines, each machine has 100 billion sorted integer in a list. How to find the mean? How to find the median (floor(n/2)th integer)
+mean: get the mean of each list, then get the mean of the mean
+median: 刚开始说用heap, 发现并没有必要。于是说可以用一个queue, 每次从各个Machine取一个数，然后用一个counter记录拿出了多少个数
+Follow-up: 这样做有什么坏处？
+machine calls are expensive. So I can pre-load partial list from each machines to memory to reduce machine calls。
+
+Round 2: Senior Engineer, worked two years at Uber
+扯了很长时间的淡，问了我的research和Monte Carlo simulation
+Word Break I & II, II 并不需要写，只要说一下就好了
+
+Round 3:Mapping, 混血小哥？
+Given a file of many characters, construct a bag of words class, each time we randomly take one character out from the bag. How to simulate this process?
+class Bag {
+        public Bag(File f) {...}
+        public char getLetter() {..}
+}
+用HashMap<Character, Integer>记录word, frequency。用一个List<Integer>记录accumulated frequency, 然后randomly generate a number between [0, sum), binary search on the list to find corresponding letter. Then decrease the list count starting from that index.
+Follow-up: what if the file is huge?
+Distribute the characters to multiple machines according to its hash value. Do frequency count on each machine and get the range [0, sum). The master machine keeps track of the sum on each slave. Then randomly generate an integer between [0, total sum), and find the corresponding machine, and corresponding letter. Then decrease the accumulated sum from that index.
+
+Round 4:很年轻的Engineer Manager姐姐
+刚开始扯了我的research，让她觉得我的背景不符，问我为什么要来。赶紧解释我的predictive analysis projects
+然后居然又问了word break!!!! 简直不能更惊讶
+她说话好快，根本没机会告诉她其实我刚刚做过
+后来又问了怎么样添加一个Metric来衡量ETA准不准
+我一开始说mean squared error. 她表示不好，容易受各种影响。于是开始乱扯，说计算平均MSE in every hour, 然后建一个time series database, 然后扯time series decomposition。。。lol
+
+==================================================================================================================
+
+题目Leetcode 297. Serialize and Deserialize Binary Tree 变种....不是个binary tree..
+要自己写main...要自己写TreeNode...等等..没写完..
+
+==================================================================================================================
+
+楼主有个在Uber工作的学长，跟我比较熟悉，所以算是强内推吧。然后神奇的故事就这么开始了：
+1.内推过后一周左右，有个recruiter联系了我，说我们来约个时间电面吧，把available time发给我。我当时没有立刻恢复，结果第二天他又给我发邮件说，啊对不起，我收回之前的话，我们对你不感兴趣，哪凉快你就去哪吧。我：黑人问号？？？
+2.然后我就把这个神奇的事情告诉了我的学长。学长非常给力，帮我问了一下他老板，老板表示看了我的简历挺感兴趣，于是重新找了一个recruiter来，提前都把电面的面试官指定好了告诉了recruiter。. from: 1point3acres.com/bbs 
+3.这次拿到了电面（之前发过面经了），跟面试官聊得很开心，面完20分钟就通知过了。之后两天跟recruiter约了onsite，约在了电面后2周。so far so good!
+4.故事开始神转折，距离onsite还有一周的时候我发现travel还没有问我订票信息，我就发邮件询问recruiter。高潮来了：面你的那个组的new grad headcount被砍掉了！你的onsite被取消了！！等有了headcount或者我给你联系到了别的组，我再联系你，至少要等到12月份了！！！我：WTF？？？
+5.后来听说在我onsite前的那一周uber把绝大部分的new grad headcount都砍掉了。。。早知道onsite约早一点了啊摔
+
+==================================================================================================================
+
+
+报一下九月初uber的面经攒人品
+电面：BreakingBad
+大概就是给一个String的化学元素字典，把一个人名中可以被字典match到的子串提取出来 （之前有人报过类似面经）
+有点像LC word break 不过面试官说可以有部分字母无法匹配
+要求能run过test case
+之后又扯了下trie 当天下午拿到onsite
+
+onsite:
+1. design uber. From 1point 3acres bbs
+主要讨论driver location, ETA, map
+. more info on 1point3acres.com
+2. manager, 纯behavior
+3. 两个manager, 纯behavior
+-google 1point3acres
+午饭
+
+4. 大数相加和相乘
+5. 又出BreakingBad；我说电面做过了。换算数表达式求值 只有加法和乘法
+
+coding题全部要求能run过case. 1point 3acres 璁哄潧
+虽然coding和design感觉都很好，还是挂了
+后来听说culture fit是重点，没事先好好准备 - 两轮behavior也是被虐。。。
+顺便问下 recruitor没说冷冻期 默认半年吗？
+
+==================================================================================================================
+
+是个印度小哥, 题目是leetcode原题
+https://github.com/gzc/leetcode/blob/master/cpp/131-140/Clone%20Graph.cpp.
+
+
+==================================================================================================================
+
+
+先聊了5-10分钟个人经历和项目
+code 1：two sum（return indices）写题目前明确题目和corner cases，比如当没有两个值和为target时候返回什么，有多个pair时候返回什么。然后依次给了三种解法，最后考官让实现hashtable的解法。
+写完之后大概才25分钟，考官说很好，如果你有很多问题你就可以开始问了，不然可以再做一题。
+code 2：soduku validator（不是solver），考官描述题目大概用了5-10分钟，然后我大概写了不到十分钟，写的差不多的时候考官说不用写了
+最后五分钟提问。
+考官说虽然最后一题没写完，但是no worries at all，一小时后接到onsite邀请。不过已经拿了其他两家的offer，感觉比Uber的好，所以不去onsite了。
