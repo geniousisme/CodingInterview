@@ -45,7 +45,6 @@ class BigInt(object):
 
         num1_len = len(num_str1)
         num2_len = len(num_str2)
-        result_len = max(num1_len, num2_len) + 1
         result = ""
 
         i = num1_len - 1
